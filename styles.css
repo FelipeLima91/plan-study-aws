@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1 {
+  color: #232f3e;
+  text-align: center;
+}
+
+h2 {
+  color: #ff9900;
+  margin-top: 30px;
+}
+
+.day {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checklist {
+  margin: 10px 0;
+}
+
+.checklist input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.notes {
+  margin-top: 15px;
+}
+
+.notes textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}
