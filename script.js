@@ -89,3 +89,11 @@ window.addEventListener("load", () => {
 
 // Atualizar a contagem regressiva diariamente
 setInterval(updateCountdown, 24 * 60 * 60 * 1000);
+
+// Função para abrir/fechar acordeões
+document.querySelectorAll(".accordion-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const content = button.nextElementSibling;
+    content.classList.toggle("active");
+  });
+});

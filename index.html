@@ -25,81 +25,189 @@
     <button onclick="saveExamDate()">Salvar Data</button>
   </div>
 
-  <!-- Dia 1 -->
-  <div class="day" id="day1">
-    <h2>Dia 1: Introdução e Padrões Arquitetônicos</h2>
-    <div class="checklist">
-      <label><input type="checkbox" id="day1-check1"> Revisar o guia do exame</label><br>
-      <label><input type="checkbox" id="day1-check2"> Explorar a AWS Management Console</label><br>
-      <label><input type="checkbox" id="day1-check3"> Praticar comandos básicos com AWS CLI</label><br>
-    </div>
-    <div class="notes">
-      <strong>Anotações:</strong><br>
-      <textarea id="day1-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+  <!-- Acordeão para Domínio 1 -->
+  <div class="accordion">
+    <button class="accordion-button">Domínio 1: Desenvolvimento com os Serviços da AWS (32%)</button>
+    <div class="accordion-content">
+      <!-- Dia 1 -->
+      <div class="day" id="day1">
+        <h2>Dia 1: Introdução e Padrões Arquitetônicos</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day1-check1"> Revisar o guia do exame</label><br>
+          <label><input type="checkbox" id="day1-check2"> Explorar a AWS Management Console</label><br>
+          <label><input type="checkbox" id="day1-check3"> Praticar comandos básicos com AWS CLI</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day1-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dia 2 -->
+      <div class="day" id="day2">
+        <h2>Dia 2: Padrões Arquitetônicos (Orientado por Eventos, Microsserviços)</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day2-check1"> Estudar padrões arquitetônicos</label><br>
+          <label><input type="checkbox" id="day2-check2"> Praticar com AWS Lambda e Amazon EventBridge</label><br>
+          <label><input type="checkbox" id="day2-check3"> Explorar Amazon SNS para mensagens</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day2-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Adicione mais dias do Domínio 1 aqui -->
     </div>
   </div>
 
-  <!-- Dia 2 -->
-  <div class="day" id="day2">
-    <h2>Dia 2: Padrões Arquitetônicos (Orientado por Eventos, Microsserviços)</h2>
-    <div class="checklist">
-      <label><input type="checkbox" id="day2-check1"> Estudar padrões arquitetônicos</label><br>
-      <label><input type="checkbox" id="day2-check2"> Praticar com AWS Lambda e Amazon EventBridge</label><br>
-      <label><input type="checkbox" id="day2-check3"> Explorar Amazon SNS para mensagens</label><br>
-    </div>
-    <div class="notes">
-      <strong>Anotações:</strong><br>
-      <textarea id="day2-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+  <!-- Acordeão para Domínio 2 -->
+  <div class="accordion">
+    <button class="accordion-button">Domínio 2: Segurança (26%)</button>
+    <div class="accordion-content">
+      <!-- Dia 11 -->
+      <div class="day" id="day11">
+        <h2>Dia 11: Autenticação e Autorização</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day11-check1"> Configurar autenticação com Amazon Cognito</label><br>
+          <label><input type="checkbox" id="day11-check2"> Usar JWT e OAuth para autorização</label><br>
+          <label><input type="checkbox" id="day11-check3"> Configurar políticas de IAM</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day11-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dia 12 -->
+      <div class="day" id="day12">
+        <h2>Dia 12: Políticas de IAM</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day12-check1"> Criar políticas baseadas em recursos</label><br>
+          <label><input type="checkbox" id="day12-check2"> Aplicar o princípio de menor privilégio</label><br>
+          <label><input type="checkbox" id="day12-check3"> Gerenciar grupos de usuários no IAM</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day12-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Adicione mais dias do Domínio 2 aqui -->
     </div>
   </div>
 
-  <!-- Dia 3 -->
-  <div class="day" id="day3">
-    <h2>Dia 3: Idempotência, Stateful vs. Stateless</h2>
-    <div class="checklist">
-      <label><input type="checkbox" id="day3-check1"> Entender idempotência</label><br>
-      <label><input type="checkbox" id="day3-check2"> Diferenciar stateful e stateless</label><br>
-      <label><input type="checkbox" id="day3-check3"> Praticar com AWS Lambda e DynamoDB</label><br>
-    </div>
-    <div class="notes">
-      <strong>Anotações:</strong><br>
-      <textarea id="day3-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+  <!-- Acordeão para Domínio 3 -->
+  <div class="accordion">
+    <button class="accordion-button">Domínio 3: Implantação (24%)</button>
+    <div class="accordion-content">
+      <!-- Dia 16 -->
+      <div class="day" id="day16">
+        <h2>Dia 16: Preparação de Artefatos para Implantação</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day16-check1"> Usar AWS AppConfig para configurações</label><br>
+          <label><input type="checkbox" id="day16-check2"> Configurar Lambda layers</label><br>
+          <label><input type="checkbox" id="day16-check3"> Gerenciar dependências de código</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day16-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dia 17 -->
+      <div class="day" id="day17">
+        <h2>Dia 17: Testes de Aplicações em Ambientes de Desenvolvimento</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day17-check1"> Testar código implantado com AWS SAM</label><br>
+          <label><input type="checkbox" id="day17-check2"> Realizar integração simulada</label><br>
+          <label><input type="checkbox" id="day17-check3"> Configurar endpoints de desenvolvimento</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day17-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Adicione mais dias do Domínio 3 aqui -->
     </div>
   </div>
 
-  <!-- Dia 4 -->
-  <div class="day" id="day4">
-    <h2>Dia 4: Padrões de Design Tolerantes a Falhas</h2>
-    <div class="checklist">
-      <label><input type="checkbox" id="day4-check1"> Estudar retry com backoff exponencial</label><br>
-      <label><input type="checkbox" id="day4-check2"> Explorar filas de mensagens mortas</label><br>
-      <label><input type="checkbox" id="day4-check3"> Praticar com Amazon SQS</label><br>
-    </div>
-    <div class="notes">
-      <strong>Anotações:</strong><br>
-      <textarea id="day4-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+  <!-- Acordeão para Domínio 4 -->
+  <div class="accordion">
+    <button class="accordion-button">Domínio 4: Solução de Problemas e Otimização (18%)</button>
+    <div class="accordion-content">
+      <!-- Dia 21 -->
+      <div class="day" id="day21">
+        <h2>Dia 21: Análise de Causa Raiz</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day21-check1"> Usar Amazon CloudWatch para logs e métricas</label><br>
+          <label><input type="checkbox" id="day21-check2"> Analisar rastreamentos com AWS X-Ray</label><br>
+          <label><input type="checkbox" id="day21-check3"> Depurar código para identificar defeitos</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day21-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dia 22 -->
+      <div class="day" id="day22">
+        <h2>Dia 22: Instrumentação de Código para Observabilidade</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day22-check1"> Implementar registro em log estruturado</label><br>
+          <label><input type="checkbox" id="day22-check2"> Emitir métricas personalizadas</label><br>
+          <label><input type="checkbox" id="day22-check3"> Configurar alertas no Amazon CloudWatch</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day22-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Adicione mais dias do Domínio 4 aqui -->
     </div>
   </div>
 
-  <!-- Dia 5 -->
-  <div class="day" id="day5">
-    <h2>Dia 5: Desenvolvimento de Aplicações Resilientes</h2>
-    <div class="checklist">
-      <label><input type="checkbox" id="day5-check1"> Desenvolver aplicações em Python, Java ou JavaScript</label><br>
-      <label><input type="checkbox" id="day5-check2"> Praticar com AWS SDKs</label><br>
-      <label><input type="checkbox" id="day5-check3"> Criar APIs resilientes</label><br>
-    </div>
-    <div class="notes">
-      <strong>Anotações:</strong><br>
-      <textarea id="day5-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+  <!-- Acordeão para Revisão -->
+  <div class="accordion">
+    <button class="accordion-button">Revisão e Prática</button>
+    <div class="accordion-content">
+      <!-- Dia 26 -->
+      <div class="day" id="day26">
+        <h2>Dia 26: Revisão Geral do Domínio 1</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day26-check1"> Revisar padrões arquitetônicos</label><br>
+          <label><input type="checkbox" id="day26-check2"> Revisar desenvolvimento com AWS Lambda</label><br>
+          <label><input type="checkbox" id="day26-check3"> Revisar uso de armazenamentos de dados</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day26-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dia 27 -->
+      <div class="day" id="day27">
+        <h2>Dia 27: Revisão Geral do Domínio 2</h2>
+        <div class="checklist">
+          <label><input type="checkbox" id="day27-check1"> Revisar autenticação e autorização</label><br>
+          <label><input type="checkbox" id="day27-check2"> Revisar políticas de IAM</label><br>
+          <label><input type="checkbox" id="day27-check3"> Revisar criptografia de dados</label><br>
+        </div>
+        <div class="notes">
+          <strong>Anotações:</strong><br>
+          <textarea id="day27-notes" placeholder="Escreva suas anotações aqui..."></textarea>
+        </div>
+      </div>
+
+      <!-- Adicione mais dias de revisão aqui -->
     </div>
   </div>
-
-  <!-- Adicione os dias 6 a 30 seguindo o mesmo padrão -->
 
   <div class="footer">
     <p>Plano de estudos criado com base no guia AWS Certified Developer – Associate (DVA-C02).</p>
-    <p>Versão 0.0.3 - Feito com ❤️ por Felipe Lima</p>
+    <p>Versão 0.0.4 - Feito com ❤️ por Felipe Lima</p>
   </div>
 
   <script src="script.js"></script>

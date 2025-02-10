@@ -86,3 +86,38 @@ h2 {
 .exam-date button:hover {
   background-color: #e68a00;
 }
+
+/* Estilos para acordeões */
+.accordion {
+  margin-bottom: 10px;
+}
+
+.accordion-button {
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  background-color: #232f3e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.accordion-button:hover {
+  background-color: #ff9900;
+}
+
+.accordion-content {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  display: none; /* Esconder o conteúdo inicialmente */
+}
+
+.accordion-content.active {
+  display: block; /* Mostrar o conteúdo quando ativo */
+}
