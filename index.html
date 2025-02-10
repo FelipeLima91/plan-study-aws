@@ -9,9 +9,21 @@
 </head>
 
 <body>
+  <!-- Contagem regressiva -->
+  <div id="countdown-banner">
+    <span id="countdown-text"></span>
+  </div>
+
   <h1>Plano de Estudos AWS Certified Developer – Associate (DVA-C02)</h1>
   <p>Plano de 30 dias para preparação para o exame AWS Certified Developer – Associate. Inclui checklists e espaço para
     anotações.</p>
+
+  <!-- Formulário para inserir a data da prova -->
+  <div class="exam-date">
+    <label for="exam-date">Data da Prova:</label>
+    <input type="date" id="exam-date">
+    <button onclick="saveExamDate()">Salvar Data</button>
+  </div>
 
   <!-- Dia 1 -->
   <div class="day" id="day1">
@@ -45,7 +57,7 @@
 
   <div class="footer">
     <p>Plano de estudos criado com base no guia AWS Certified Developer – Associate (DVA-C02).</p>
-    <p>Feito com ❤️ por [Seu Nome]</p>
+    <p>Versão 0.0.2 - Feito com ❤️ por Felipe Lima</p>
   </div>
 
   <script src="script.js"></script>
