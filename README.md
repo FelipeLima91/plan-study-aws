@@ -84,10 +84,6 @@ Você pode acessar o plano de estudos online através do GitHub Pages: [Plano de
 
 Sinta-se à vontade para contribuir com este projeto enviando pull requests ou abrindo issues para melhorias e correções.
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ---
 
 Boa sorte na sua preparação! 🚀
