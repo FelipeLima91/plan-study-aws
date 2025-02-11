@@ -62,6 +62,18 @@ As checklists e comentários são salvos localmente no dispositivo, ou seja, sã
 - **Simulados:** Faça simulados de exame para se acostumar com o formato e o tempo.
 - **Comunidade:** Participe de fóruns e grupos de estudo para tirar dúvidas e compartilhar conhecimentos.
 
+## Acesse o Plano de Estudos
+
+Você pode acessar o plano de estudos online através do GitHub Pages: [Plano de Estudos AWS](https://felipelima91.github.io/plan-study-aws/)
+
+## Dicas Gerais
+
+- **Prática:** Utilize o AWS Free Tier para praticar a criação e implantação de aplicações.
+- **Ferramentas:** Familiarize-se com AWS SAM, AWS CLI e SDKs.
+- **Documentação:** Consulte a documentação oficial da AWS para serviços como Lambda, DynamoDB, IAM, etc.
+- **Simulados:** Faça simulados de exame para se acostumar com o formato e o tempo.
+- **Comunidade:** Participe de fóruns e grupos de estudo para tirar dúvidas e compartilhar conhecimentos.
+
 ## Recursos Adicionais
 
 - **AWS Training:** Cursos oficiais da AWS para o exame Developer – Associate.
@@ -71,6 +83,10 @@ As checklists e comentários são salvos localmente no dispositivo, ou seja, sã
 ## Contribuição
 
 Sinta-se à vontade para contribuir com este projeto enviando pull requests ou abrindo issues para melhorias e correções.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
