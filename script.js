@@ -29,7 +29,7 @@ function updateCountdown() {
     }
   } else {
     document.getElementById("countdown-text").innerText =
-      "Insira a data da prova acima.";
+      "Insira a data da prova abaixo.";
   }
 }
 
