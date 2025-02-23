@@ -97,3 +97,25 @@ document.querySelectorAll(".accordion-button").forEach((button) => {
     content.classList.toggle("active");
   });
 });
+
+function toggleTheme() {
+  const body = document.body;
+  const themeToggle = document.getElementById("theme-toggle");
+  body.classList.toggle("dark-mode");
+  const isDarkMode = body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  themeToggle.textContent = isDarkMode ? "🌜" : "🌞";
+}
+
+function loadTheme() {
+  const theme = localStorage.getItem("theme");
+  const themeToggle = document.getElementById("theme-toggle");
+  if (theme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "🌜";
+  } else {
+    themeToggle.textContent = "🌞";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadTheme);

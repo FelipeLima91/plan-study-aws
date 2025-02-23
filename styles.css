@@ -60,6 +60,20 @@ h2 {
   font-weight: bold;
   margin-bottom: 20px;
   border-radius: 5px;
+  position: relative;
+}
+
+#theme-toggle {
+  font-size: 1.5em;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body.dark-mode #countdown-banner {
+  background-color: #333333;
 }
 
 .alert {
@@ -124,4 +138,50 @@ h2 {
 
 .accordion-content.active {
   display: block; /* Mostrar o conteúdo quando ativo */
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .accordion-button {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+body.dark-mode .accordion-button:hover {
+  background-color: #444444;
+}
+
+body.dark-mode .accordion-content {
+  background-color: #1e1e1e;
+  border: 1px solid #444444;
+}
+
+body.dark-mode .day {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode .notes textarea {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+body.dark-mode #countdown-banner {
+  background-color: #333333;
+}
+
+body.dark-mode .exam-date button {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+body.dark-mode .exam-date button:hover {
+  background-color: #555555;
+}
+
+body.dark-mode h1 {
+  color: #ff9900;
 }
