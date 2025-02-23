@@ -98,6 +98,7 @@ document.querySelectorAll(".accordion-button").forEach((button) => {
   });
 });
 
+// Função para alternar o tema
 function toggleTheme() {
   const body = document.body;
   const themeToggle = document.getElementById("theme-toggle");
@@ -107,6 +108,7 @@ function toggleTheme() {
   themeToggle.textContent = isDarkMode ? "🌜" : "🌞";
 }
 
+// Carregar o tema ao abrir a página
 function loadTheme() {
   const theme = localStorage.getItem("theme");
   const themeToggle = document.getElementById("theme-toggle");

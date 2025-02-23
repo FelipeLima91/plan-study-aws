@@ -105,7 +105,6 @@ body.dark-mode #countdown-banner {
   background-color: #e68a00;
 }
 
-/* Estilos para acordeões */
 .accordion {
   margin-bottom: 10px;
 }
@@ -133,13 +132,16 @@ body.dark-mode #countdown-banner {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 5px;
-  display: none; /* Esconder o conteúdo inicialmente */
+  display: none;
 }
 
 .accordion-content.active {
-  display: block; /* Mostrar o conteúdo quando ativo */
+  display: block;
 }
 
+/* 
+  Dark mode 
+*/
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
