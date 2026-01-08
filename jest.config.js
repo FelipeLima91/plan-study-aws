@@ -14,9 +14,7 @@ export default {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: {
-          jsx: "react-jsx",
-        },
+        tsconfig: "<rootDir>/tsconfig.test.json",
       },
     ],
   },
