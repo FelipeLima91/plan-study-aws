@@ -1,28 +1,45 @@
-import { studyPlan } from './data/studyPlan';
-import { CountdownBanner } from './components/CountdownBanner';
-import { ExamDateForm } from './components/ExamDateForm';
-import { Accordion } from './components/Accordion';
+import { useState, useEffect } from 'react';
+import { availablePlans } from './data/studyPlan';
+import { PlanSelection } from './components/PlanSelection';
+import { StudyPlanView } from './components/StudyPlanView';
+
 import { Footer } from './components/Footer';
 
 function App() {
+  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const savedPlanId = localStorage.getItem('selectedPlanId');
+    if (savedPlanId) {
+      // Improve robustness: check if plan actually exists
+      const planExists = availablePlans.some(p => p.id === savedPlanId);
+      if (planExists) {
+        setSelectedPlanId(savedPlanId);
+      }
+    }
+  }, []);
+
+  const handleSelectPlan = (planId: string) => {
+    setSelectedPlanId(planId);
+    localStorage.setItem('selectedPlanId', planId);
+  };
+
+  const handleBack = () => {
+    setSelectedPlanId(null);
+    localStorage.removeItem('selectedPlanId');
+  };
+
+  const selectedPlan = availablePlans.find((p) => p.id === selectedPlanId);
+
   return (
-    <>
-      <CountdownBanner />
-      <h1>Plano de Estudos AWS Certified Developer – Associate (DVA-C02)</h1>
-      <p>
-        Plano de 30 dias para preparação para o exame AWS Certified Developer – Associate. Inclui
-        checklists e espaço para anotações.
-      </p>
-      <p className="alert">
-        As checklists e anotações são salvas em cache localmente. Se você acessar de outro
-        dispositivo ou limpar o cache, não será possível retomar o andamento do plano de estudo.
-      </p>
-      <ExamDateForm />
-      {studyPlan.domains.map((domain) => (
-        <Accordion key={domain.id} domain={domain} />
-      ))}
-      <Footer />
-    </>
+    <div className="container">
+      {selectedPlan ? (
+        <StudyPlanView planConfig={selectedPlan} onBack={handleBack} />
+      ) : (
+        <PlanSelection plans={availablePlans} onSelectPlan={handleSelectPlan} />
+      )}
+      <Footer config={selectedPlan?.footerConfig} />
+    </div>
   );
 }
 
