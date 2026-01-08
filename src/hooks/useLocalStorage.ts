@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
-  // Estado para armazenar o valor
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -12,7 +11,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
     }
   });
 
-  // Função para atualizar o valor
   const setValue = (value: T) => {
     try {
       setStoredValue(value);
@@ -25,7 +23,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
   return [storedValue, setValue];
 }
 
-// Hook específico para strings (não precisa JSON.parse/stringify)
 export function useLocalStorageString(
   key: string,
   initialValue: string
@@ -44,15 +41,32 @@ export function useLocalStorageString(
     try {
       setStoredValue(value);
       window.localStorage.setItem(key, value);
+      window.dispatchEvent(new CustomEvent('localStorageChange', { 
+        detail: { key, value } 
+      }));
     } catch (error) {
       console.error(`Error setting localStorage key "${key}":`, error);
     }
   };
 
+  useEffect(() => {
+    const handleStorageChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ key: string; value: string }>;
+      if (customEvent.detail.key === key) {
+        setStoredValue(customEvent.detail.value);
+      }
+    };
+
+    window.addEventListener('localStorageChange', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('localStorageChange', handleStorageChange);
+    };
+  }, [key]);
+
   return [storedValue, setValue];
 }
 
-// Hook específico para booleanos
 export function useLocalStorageBoolean(
   key: string,
   initialValue: boolean
