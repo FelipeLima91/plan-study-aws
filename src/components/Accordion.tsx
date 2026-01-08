@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Domain } from '../types';
 import { Day } from './Day';
 
@@ -6,12 +7,20 @@ interface AccordionProps {
   domain: Domain;
 }
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
 export function Accordion({ domain }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="accordion">
-      <button 
+    <motion.div
+      className="accordion"
+      variants={itemVariants}
+    >
+      <button
         className={`accordion-button ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -23,6 +32,6 @@ export function Accordion({ domain }: AccordionProps) {
           <Day key={day.id} day={day} />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

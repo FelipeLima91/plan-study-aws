@@ -7,7 +7,6 @@ interface DayProps {
 }
 
 export function Day({ day }: DayProps) {
-  // Carregar estado inicial dos checkboxes
   const getCheckboxState = (checkId: string): boolean => {
     const saved = localStorage.getItem(checkId);
     return saved === 'true';

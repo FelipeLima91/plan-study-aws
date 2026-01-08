@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { availablePlans } from './data/studyPlan';
 import { PlanSelection } from './components/PlanSelection';
 import { StudyPlanView } from './components/StudyPlanView';
-
-import { Footer } from './components/Footer';
+// Footer imported removed
 
 function App() {
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
@@ -32,13 +32,14 @@ function App() {
   const selectedPlan = availablePlans.find((p) => p.id === selectedPlanId);
 
   return (
-    <div className="container">
-      {selectedPlan ? (
-        <StudyPlanView planConfig={selectedPlan} onBack={handleBack} />
-      ) : (
-        <PlanSelection plans={availablePlans} onSelectPlan={handleSelectPlan} />
-      )}
-      <Footer config={selectedPlan?.footerConfig} />
+    <div className="container" style={{ overflowX: 'hidden' }}>
+      <AnimatePresence mode="wait">
+        {selectedPlan ? (
+          <StudyPlanView key="plan-view" planConfig={selectedPlan} onBack={handleBack} />
+        ) : (
+          <PlanSelection key="plan-selection" plans={availablePlans} onSelectPlan={handleSelectPlan} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
