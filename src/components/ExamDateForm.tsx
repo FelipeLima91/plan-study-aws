@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocalStorageString } from '../hooks/useLocalStorage';
 
-export function ExamDateForm() {
-  const [examDate, setExamDate] = useLocalStorageString('examDate', '');
+interface ExamDateFormProps {
+  planId: string;
+}
+
+export function ExamDateForm({ planId }: ExamDateFormProps) {
+  const [examDate, setExamDate] = useLocalStorageString(`examDate-${planId}`, '');
   const [inputValue, setInputValue] = useState(examDate);
   const [isEditing, setIsEditing] = useState(!examDate);
 

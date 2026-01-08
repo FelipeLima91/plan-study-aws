@@ -4,10 +4,11 @@ import { useLocalStorageString } from '../hooks/useLocalStorage';
 
 interface CountdownBannerProps {
   onBack?: () => void;
+  planId: string;
 }
 
-export function CountdownBanner({ onBack }: CountdownBannerProps) {
-  const [examDate] = useLocalStorageString('examDate', '');
+export function CountdownBanner({ onBack, planId }: CountdownBannerProps) {
+  const [examDate] = useLocalStorageString(`examDate-${planId}`, '');
   const countdownText = useCountdown(examDate);
   const [isDarkMode, toggleTheme] = useTheme();
 

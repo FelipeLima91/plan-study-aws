@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { PlanConfig } from '../data/studyPlan';
+import { Footer } from './Footer';
 
 interface PlanSelectionProps {
     plans: PlanConfig[];
@@ -7,15 +9,21 @@ interface PlanSelectionProps {
 
 export function PlanSelection({ plans, onSelectPlan }: PlanSelectionProps) {
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            padding: '20px',
-            maxWidth: '800px',
-            margin: '0 auto',
-            marginTop: '50px'
-        }}>
+        <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }} // Exit to left
+            transition={{ duration: 0.3 }}
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                padding: '20px',
+                maxWidth: '800px',
+                margin: '0 auto',
+                marginTop: '50px'
+            }}
+        >
             <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Escolha seu Plano de Estudos</h1>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
                 {plans.map((plan) => (
@@ -52,6 +60,7 @@ export function PlanSelection({ plans, onSelectPlan }: PlanSelectionProps) {
                     </button>
                 ))}
             </div>
-        </div>
+            <Footer />
+        </motion.div>
     );
 }
