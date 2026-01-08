@@ -1,12 +1,13 @@
 # Plano de Estudos de 30 Dias para o Exame AWS Certified Developer – Associate (DVA-C02)
 
-Este projeto contém um plano de estudos detalhado para ajudar na preparação para o exame AWS Certified Developer – Associate (DVA-C02). O plano é dividido em 30 dias, cobrindo todos os domínios e tópicos necessários para o exame.
+Este projeto contém um plano de estudos detalhado para ajudar na preparação para o exame AWS Certified Developer – Associate (DVA-C02) e AWS AI Practitioner. O plano é dividido em 30 dias, cobrindo todos os domínios e tópicos necessários para o exame.
 
 As checklists e comentários são salvos localmente no dispositivo, ou seja, são armazenados em cache. Isso significa que não será possível acessá-los em diferentes dispositivos devido às limitações deste projeto.
 
 ## 🚀 Tecnologias
 
 Este projeto foi desenvolvido com:
+
 - **React 18** - Biblioteca JavaScript para construção de interfaces
 - **TypeScript** - Superset do JavaScript com tipagem estática
 - **Vite** - Build tool moderna e rápida
@@ -22,17 +23,20 @@ Este projeto foi desenvolvido com:
 ### Passos para instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/FelipeLima91/plan-study-aws.git
 cd plan-study-aws/plan-study-aws
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 ```
 
 3. Inicie o servidor de desenvolvimento:
+
 ```bash
 npm run dev
 ```
