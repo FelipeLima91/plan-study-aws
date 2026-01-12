@@ -12,11 +12,7 @@ export function Day({ day }: DayProps) {
       <h2>{day.title}</h2>
       <div className="checklist">
         {day.checklist.map((item) => (
-          <CheckboxItem
-            key={item.id}
-            id={item.id}
-            text={item.text}
-          />
+          <CheckboxItem key={item.id} id={item.id} text={item.text} />
         ))}
       </div>
       <PostIt dayId={day.id} />

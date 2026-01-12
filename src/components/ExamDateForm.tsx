@@ -57,7 +57,9 @@ export function ExamDateForm({ planId }: ExamDateFormProps) {
 
   return (
     <div className="exam-date">
-      <label htmlFor="exam-date" className="exam-date-label">Data da Prova:</label>
+      <label htmlFor="exam-date" className="exam-date-label">
+        Data da Prova:
+      </label>
       <div className="exam-date-input-group">
         <input
           type="date"

@@ -1,23 +1,23 @@
-import "@testing-library/jest-dom";
-import { describe, it, expect, jest } from "@jest/globals";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { Accordion } from "../Accordion";
-import { Domain } from "../../types";
+import '@testing-library/jest-dom';
+import { describe, it, expect, jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Accordion } from '../Accordion';
+import { Domain } from '../../types';
 
 const mockDomain: Domain = {
-  id: "domain-1",
-  title: "EC2",
+  id: 'domain-1',
+  title: 'EC2',
   days: [
     {
-      id: "day-1",
-      title: "Day 1 - Basics",
-      checklist: [{ id: "check-1", text: "Learn about instances" }],
+      id: 'day-1',
+      title: 'Day 1 - Basics',
+      checklist: [{ id: 'check-1', text: 'Learn about instances' }],
     },
   ],
 };
 
-jest.mock("../../contexts/StudyPlanContext", () => ({
+jest.mock('../../contexts/StudyPlanContext', () => ({
   useStudyPlan: () => ({
     getDomainProgress: jest.fn().mockReturnValue(50),
     inputValues: {},
@@ -25,43 +25,43 @@ jest.mock("../../contexts/StudyPlanContext", () => ({
   }),
 }));
 
-describe("Accordion", () => {
-  it("deve renderizar o título do domínio", () => {
+describe('Accordion', () => {
+  it('deve renderizar o título do domínio', () => {
     render(<Accordion domain={mockDomain} planId="test-plan" />);
-    expect(screen.getByText("EC2")).toBeInTheDocument();
+    expect(screen.getByText('EC2')).toBeInTheDocument();
   });
 
-  it("deve alternar entre aberto e fechado ao clicar", async () => {
+  it('deve alternar entre aberto e fechado ao clicar', async () => {
     const user = userEvent.setup();
     render(<Accordion domain={mockDomain} planId="test-plan" />);
 
     // Busca o botão pelo texto do título (EC2) para evitar conflito com outros botões
-    const button = screen.getByRole("button", { name: /EC2/i });
+    const button = screen.getByRole('button', { name: /EC2/i });
 
     // Começa fechado
-    expect(button).toHaveClass("accordion-button");
+    expect(button).toHaveClass('accordion-button');
 
     // Clica para abrir
     await user.click(button);
-    expect(button).toHaveClass("active");
+    expect(button).toHaveClass('active');
 
     // Clica para fechar
     await user.click(button);
-    expect(button).not.toHaveClass("active");
+    expect(button).not.toHaveClass('active');
   });
 
-  it("deve exibir os dias quando aberto", async () => {
+  it('deve exibir os dias quando aberto', async () => {
     const user = userEvent.setup();
     render(<Accordion domain={mockDomain} planId="test-plan" />);
 
-    const button = screen.getByRole("button", { name: /EC2/i });
+    const button = screen.getByRole('button', { name: /EC2/i });
     await user.click(button);
 
-    expect(screen.getByText("Day 1 - Basics")).toBeInTheDocument();
+    expect(screen.getByText('Day 1 - Basics')).toBeInTheDocument();
   });
 
-  it("deve exibir a porcentagem de progresso", () => {
+  it('deve exibir a porcentagem de progresso', () => {
     render(<Accordion domain={mockDomain} planId="test-plan" />);
-    expect(screen.getByText("50%")).toBeInTheDocument();
+    expect(screen.getByText('50%')).toBeInTheDocument();
   });
 });

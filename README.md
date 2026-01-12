@@ -81,12 +81,22 @@ plan-study-aws/
 
 ## 💡 Funcionalidades
 
-- ✅ Contagem regressiva para a data da prova
-- ✅ Checklists interativas para cada dia de estudo
+- ✅ Contagem regressiva para a data da prova (responsiva)
+- ✅ Checklists interativas com barra de progresso visual (0-100%)
+- ✅ Indicador de progresso geral do plano
 - ✅ Área de anotações para cada dia
 - ✅ Modo escuro/claro
-- ✅ Persistência de dados no localStorage
+- ✅ Persistência de dados completa no localStorage (incluindo estado dos acordeões)
+- ✅ Configuração de data independente por plano de estudos
 - ✅ Interface responsiva e moderna
+
+## 🧪 Testes e Qualidade
+
+O projeto preza pela qualidade de código e confiabilidade:
+
+- **Testes Unitários**: Configurados com **Jest** e **React Testing Library**.
+- **CI/CD**: Pipeline automatizada via **GitHub Actions** para execução de testes em cada push/PR.
+- **Boas Práticas**: Código estruturado visando clareza e manutenção.
 
 ## 🌐 Acesse o Plano de Estudos
 

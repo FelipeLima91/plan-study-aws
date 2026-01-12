@@ -25,7 +25,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
 
 export function useLocalStorageString(
   key: string,
-  initialValue: string
+  initialValue: string,
 ): [string, (value: string) => void] {
   const [storedValue, setStoredValue] = useState<string>(() => {
     try {
@@ -41,9 +41,11 @@ export function useLocalStorageString(
     try {
       setStoredValue(value);
       window.localStorage.setItem(key, value);
-      window.dispatchEvent(new CustomEvent('localStorageChange', { 
-        detail: { key, value } 
-      }));
+      window.dispatchEvent(
+        new CustomEvent('localStorageChange', {
+          detail: { key, value },
+        }),
+      );
     } catch (error) {
       console.error(`Error setting localStorage key "${key}":`, error);
     }
@@ -58,7 +60,7 @@ export function useLocalStorageString(
     };
 
     window.addEventListener('localStorageChange', handleStorageChange);
-    
+
     return () => {
       window.removeEventListener('localStorageChange', handleStorageChange);
     };
@@ -69,7 +71,7 @@ export function useLocalStorageString(
 
 export function useLocalStorageBoolean(
   key: string,
-  initialValue: boolean
+  initialValue: boolean,
 ): [boolean, (value: boolean) => void] {
   const [storedValue, setStoredValue] = useState<boolean>(() => {
     try {

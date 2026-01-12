@@ -23,9 +23,9 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
     const initialState: Record<string, boolean> = {};
     const allCheckboxes: string[] = [];
 
-    planConfig.data.domains.forEach(domain => {
-      domain.days.forEach(day => {
-        day.checklist.forEach(item => {
+    planConfig.data.domains.forEach((domain) => {
+      domain.days.forEach((day) => {
+        day.checklist.forEach((item) => {
           allCheckboxes.push(item.id);
           const saved = localStorage.getItem(item.id);
           if (saved === 'true') {
@@ -38,30 +38,30 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
   }, [planConfig]);
 
   const toggleItem = (id: string) => {
-    setInputValues(prev => {
+    setInputValues((prev) => {
       const newState = !prev[id];
       const nextValues = { ...prev, [id]: newState };
-      
+
       // Persist to localStorage
       if (newState) {
         localStorage.setItem(id, 'true');
       } else {
         localStorage.removeItem(id);
       }
-      
+
       return nextValues;
     });
   };
 
   const getDomainProgress = (domainId: string) => {
-    const domain = planConfig.data.domains.find(d => d.id === domainId);
+    const domain = planConfig.data.domains.find((d) => d.id === domainId);
     if (!domain) return 0;
 
     let total = 0;
     let completed = 0;
 
-    domain.days.forEach(day => {
-      day.checklist.forEach(item => {
+    domain.days.forEach((day) => {
+      day.checklist.forEach((item) => {
         total++;
         if (inputValues[item.id]) {
           completed++;
@@ -76,9 +76,9 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
     let total = 0;
     let completed = 0;
 
-    planConfig.data.domains.forEach(domain => {
-      domain.days.forEach(day => {
-        day.checklist.forEach(item => {
+    planConfig.data.domains.forEach((domain) => {
+      domain.days.forEach((day) => {
+        day.checklist.forEach((item) => {
           total++;
           if (inputValues[item.id]) {
             completed++;
@@ -91,7 +91,9 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
   })();
 
   return (
-    <StudyPlanContext.Provider value={{ inputValues, toggleItem, getDomainProgress, totalProgress }}>
+    <StudyPlanContext.Provider
+      value={{ inputValues, toggleItem, getDomainProgress, totalProgress }}
+    >
       {children}
     </StudyPlanContext.Provider>
   );

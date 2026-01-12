@@ -12,7 +12,7 @@ function App() {
     const savedPlanId = localStorage.getItem('selectedPlanId');
     if (savedPlanId) {
       // Improve robustness: check if plan actually exists
-      const planExists = availablePlans.some(p => p.id === savedPlanId);
+      const planExists = availablePlans.some((p) => p.id === savedPlanId);
       if (planExists) {
         setSelectedPlanId(savedPlanId);
       }
@@ -37,7 +37,11 @@ function App() {
         {selectedPlan ? (
           <StudyPlanView key="plan-view" planConfig={selectedPlan} onBack={handleBack} />
         ) : (
-          <PlanSelection key="plan-selection" plans={availablePlans} onSelectPlan={handleSelectPlan} />
+          <PlanSelection
+            key="plan-selection"
+            plans={availablePlans}
+            onSelectPlan={handleSelectPlan}
+          />
         )}
       </AnimatePresence>
     </div>

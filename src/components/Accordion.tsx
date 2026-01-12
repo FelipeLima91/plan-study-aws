@@ -9,7 +9,7 @@ interface AccordionProps {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  visible: { opacity: 1, y: 0 },
 };
 
 import { useLocalStorageBoolean } from '../hooks/useLocalStorage'; // Import hook
@@ -22,24 +22,25 @@ export function Accordion({ domain, planId }: AccordionProps) {
   const progress = getDomainProgress(domain.id);
 
   const handleToggle = () => {
-     setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
   };
 
   return (
-    <motion.div
-      className="accordion"
-      variants={itemVariants}
-    >
-      <button
-        className={`accordion-button ${isOpen ? 'active' : ''}`}
-        onClick={handleToggle}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
-            <span style={{textAlign: 'left'}}>{domain.title}</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '0.8em', opacity: 0.8 }}>{progress}%</span>
-                <span className="accordion-icon">{isOpen ? '▼' : '▶'}</span>
-            </div>
+    <motion.div className="accordion" variants={itemVariants}>
+      <button className={`accordion-button ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'space-between',
+          }}
+        >
+          <span style={{ textAlign: 'left' }}>{domain.title}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '0.8em', opacity: 0.8 }}>{progress}%</span>
+            <span className="accordion-icon">{isOpen ? '▼' : '▶'}</span>
+          </div>
         </div>
       </button>
       <div className={`accordion-content ${isOpen ? 'active' : ''}`}>

@@ -10,20 +10,20 @@ export function Footer({ config }: FooterProps) {
       {config && (
         <p>
           Baseado no{' '}
-          <a
-            href={config.examLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={config.examLink} target="_blank" rel="noopener noreferrer">
             {config.examName}
           </a>{' '}
-          na data de {config.lastAccessDate}. Este guia pode estar desatualizado ou excluído, consulte diretamente o
-          site de treinamento da AWS para informações atualizadas.
+          na data de {config.lastAccessDate}. Este guia pode estar desatualizado ou excluído,
+          consulte diretamente o site de treinamento da AWS para informações atualizadas.
         </p>
       )}
       <p>Versão 2.1.0 - Feito com ❤️ por Felipe Lima</p>
       <p>
-        <a href="https://github.com/FelipeLima91/plan-study-aws" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/FelipeLima91/plan-study-aws"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           GitHub
         </a>{' '}
         |{' '}

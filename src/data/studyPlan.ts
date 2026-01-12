@@ -238,16 +238,12 @@ export const awsDeveloperAssociatePlan: StudyPlan = {
         {
           id: 'day24',
           title: 'Dia 24: Definição de Perfis de Desempenho',
-          checklist: [
-            { id: 'day24-check1', text: 'Uso de políticas de filtro de assinatura' },
-          ],
+          checklist: [{ id: 'day24-check1', text: 'Uso de políticas de filtro de assinatura' }],
         },
         {
           id: 'day25',
           title: 'Dia 25: Revisão de Solução de Problemas e Otimização',
-          checklist: [
-            { id: 'day25-check1', text: 'Práticas recomendadas' },
-          ],
+          checklist: [{ id: 'day25-check1', text: 'Práticas recomendadas' }],
         },
       ],
     },
@@ -278,9 +274,15 @@ export const awsDeveloperAssociatePlan: StudyPlan = {
           title: 'Dia 28: Revisão Geral do Domínio 3',
           checklist: [
             { id: 'day28-check1', text: 'Revisar preparação de artefatos para implantação' },
-            { id: 'day28-check2', text: 'Revisar testes de aplicações em ambientes de desenvolvimento' },
+            {
+              id: 'day28-check2',
+              text: 'Revisar testes de aplicações em ambientes de desenvolvimento',
+            },
             { id: 'day28-check3', text: 'Revisar automação de testes de implantação' },
-            { id: 'day28-check4', text: 'Revisar CI/CD com AWS CodePipeline, CodeBuild e CodeDeploy' },
+            {
+              id: 'day28-check4',
+              text: 'Revisar CI/CD com AWS CodePipeline, CodeBuild e CodeDeploy',
+            },
             { id: 'day28-check5', text: 'Revisar estratégias de implantação e reversões' },
           ],
         },
@@ -292,7 +294,10 @@ export const awsDeveloperAssociatePlan: StudyPlan = {
             { id: 'day29-check2', text: 'Revisar instrumentação de código para observabilidade' },
             { id: 'day29-check3', text: 'Revisar otimização de aplicações' },
             { id: 'day29-check4', text: 'Revisar definição de perfis de desempenho' },
-            { id: 'day29-check5', text: 'Revisar práticas recomendadas de solução de problemas e otimização' },
+            {
+              id: 'day29-check5',
+              text: 'Revisar práticas recomendadas de solução de problemas e otimização',
+            },
           ],
         },
         {
@@ -341,7 +346,10 @@ export const awsAIPractitionerPlan: StudyPlan = {
             { id: 'ai-day3-check1', text: 'Identificar quando IA agrega valor' },
             { id: 'ai-day3-check2', text: 'Identificar quando NÃO usar IA' },
             { id: 'ai-day3-check3', text: 'Estudar regressão, classificação e clusterização' },
-            { id: 'ai-day3-check4', text: 'Revisar exemplos reais de IA (fraude, recomendação, PLN)' },
+            {
+              id: 'ai-day3-check4',
+              text: 'Revisar exemplos reais de IA (fraude, recomendação, PLN)',
+            },
           ],
         },
         {
@@ -351,7 +359,10 @@ export const awsAIPractitionerPlan: StudyPlan = {
             { id: 'ai-day4-check1', text: 'Estudar pipeline de ML (dados → deploy)' },
             { id: 'ai-day4-check2', text: 'Entender métricas técnicas (Accuracy, F1, AUC)' },
             { id: 'ai-day4-check3', text: 'Entender métricas de negócio (ROI, custo)' },
-            { id: 'ai-day4-check4', text: 'Conhecer serviços AWS: SageMaker, Feature Store, Model Monitor' },
+            {
+              id: 'ai-day4-check4',
+              text: 'Conhecer serviços AWS: SageMaker, Feature Store, Model Monitor',
+            },
           ],
         },
       ],
@@ -620,10 +631,10 @@ export const awsAIPractitionerPlan: StudyPlan = {
             { id: 'ai-day30-check2', text: 'Revisar serviços AWS mais cobrados' },
             { id: 'ai-day30-check3', text: 'Descansar antes da prova' },
           ],
-        }
-      ]
+        },
+      ],
     },
-  ]
+  ],
 };
 
 export interface FooterConfig {
@@ -651,14 +662,15 @@ export const availablePlans: PlanConfig[] = [
     data: awsDeveloperAssociatePlan,
     style: {
       backgroundGradient: 'linear-gradient(135deg, #0d47a1 0%, #42a5f5 100%)', // Dark Blue to Light Blue
-      borderColor: '#80bdff',    // Light Blue for glow
+      borderColor: '#80bdff', // Light Blue for glow
       color: 'white',
     },
     footerConfig: {
       examName: 'AWS Certified Developer – Associate (DVA-C02)',
-      examLink: 'https://d1.awsstatic.com/pt_BR/training-and-certification/docs-dev-associate/AWS-Certified-Developer-Associate_Exam-Guide.pdf',
-      lastAccessDate: '10/02/25'
-    }
+      examLink:
+        'https://d1.awsstatic.com/pt_BR/training-and-certification/docs-dev-associate/AWS-Certified-Developer-Associate_Exam-Guide.pdf',
+      lastAccessDate: '10/02/25',
+    },
   },
   {
     id: 'aws-ai-practitioner',
@@ -666,14 +678,14 @@ export const availablePlans: PlanConfig[] = [
     data: awsAIPractitionerPlan,
     style: {
       backgroundGradient: 'linear-gradient(135deg, #000000 0%, #434343 100%)', // Black to Dark Grey
-      borderColor: '#c0c0c0',    // Silver for glow
+      borderColor: '#c0c0c0', // Silver for glow
       color: 'white',
     },
     footerConfig: {
       examName: 'AWS Certified AI Practitioner (AIF-C01)',
-      examLink: 'https://d1.awsstatic.com/onedam/marketing-channels/website/aws/pt_BR/certification/approved/pdfs/docs-ai-practitioner/AWS-Certified-AI-Practitioner_Exam-Guide.pdf',
-      lastAccessDate: '08/01/2026'
-    }
+      examLink:
+        'https://d1.awsstatic.com/onedam/marketing-channels/website/aws/pt_BR/certification/approved/pdfs/docs-ai-practitioner/AWS-Certified-AI-Practitioner_Exam-Guide.pdf',
+      lastAccessDate: '08/01/2026',
+    },
   },
 ];
-

@@ -29,33 +29,27 @@ export function PostIt({ dayId }: PostItProps) {
       if (match.index > lastIndex) {
         parts.push(text.substring(lastIndex, match.index));
       }
-      
+
       // Adicionar o link
       let url = match[0];
       if (!url.startsWith('http://') && !url.startsWith('https://')) {
         url = 'https://' + url;
       }
-      
+
       parts.push(
-        <a
-          key={key++}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="postit-link"
-        >
+        <a key={key++} href={url} target="_blank" rel="noopener noreferrer" className="postit-link">
           {match[0]}
-        </a>
+        </a>,
       );
-      
+
       lastIndex = match.index + match[0].length;
     }
-    
+
     // Adicionar texto restante
     if (lastIndex < text.length) {
       parts.push(text.substring(lastIndex));
     }
-    
+
     return parts.length > 0 ? parts : [text];
   };
 
@@ -94,7 +88,11 @@ export function PostIt({ dayId }: PostItProps) {
             onKeyDown={handleKeyPress}
             rows={3}
           />
-          <button className="btn btn-primary btn-sm" onClick={handleSave} disabled={!inputText.trim()}>
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={handleSave}
+            disabled={!inputText.trim()}
+          >
             <span className="btn-icon">💾</span>
             Salvar
           </button>
@@ -111,9 +109,7 @@ export function PostIt({ dayId }: PostItProps) {
             >
               ×
             </button>
-            <div className="postit-content">
-              {formatTextWithLinks(note.text)}
-            </div>
+            <div className="postit-content">{formatTextWithLinks(note.text)}</div>
           </div>
         ))}
       </div>

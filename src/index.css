@@ -71,13 +71,13 @@ h2 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.checkbox-input:checked~.checkbox-custom {
+.checkbox-input:checked ~ .checkbox-custom {
   background-color: #ff9900;
   border-color: #ff9900;
   box-shadow: 0 2px 4px rgba(255, 153, 0, 0.3);
 }
 
-.checkbox-input:checked~.checkbox-custom::after {
+.checkbox-input:checked ~ .checkbox-custom::after {
   content: '';
   position: absolute;
   left: 6px;
@@ -104,7 +104,7 @@ h2 {
   }
 }
 
-.checkbox-input:focus~.checkbox-custom {
+.checkbox-input:focus ~ .checkbox-custom {
   box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
 }
 
@@ -187,10 +187,14 @@ h2 {
   background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
   padding: 15px;
   border-radius: 4px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.1);
   min-height: 120px;
   transform: rotate(-1deg);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   border-left: 4px solid #ffd54f;
 }
 
@@ -208,7 +212,9 @@ h2 {
 
 .postit-note:hover {
   transform: rotate(0deg) scale(1.02);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 5px 12px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.15);
   z-index: 1;
 }
 
@@ -376,7 +382,9 @@ body.dark-mode #countdown-banner {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 6px;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   font-family: inherit;
 }
 
@@ -533,7 +541,8 @@ body.dark-mode #countdown-banner {
   overflow: hidden;
   opacity: 0;
   transform: translateY(-10px);
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -544,7 +553,8 @@ body.dark-mode #countdown-banner {
   opacity: 1;
   padding: 10px;
   transform: translateY(0);
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -689,7 +699,7 @@ body.dark-mode .checkbox-custom {
   background-color: #333;
 }
 
-body.dark-mode .checkbox-input:checked~.checkbox-custom {
+body.dark-mode .checkbox-input:checked ~ .checkbox-custom {
   background-color: #ff9900;
   border-color: #ff9900;
 }
