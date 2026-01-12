@@ -11,7 +11,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "framer-motion": "^12.24.12",
@@ -47,5 +48,14 @@
     "ts-jest": "^29.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }
