@@ -21,7 +21,7 @@ export default {
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
-  collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts", "!src/main.tsx"],
+  collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts", "!src/main.tsx", "!src/data/**/*"],
   coverageThreshold: {
     global: {
       statements: 60,

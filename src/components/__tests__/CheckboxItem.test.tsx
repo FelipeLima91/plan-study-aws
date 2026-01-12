@@ -1,62 +1,52 @@
 import "@testing-library/jest-dom";
-import { describe, it, expect, beforeEach } from "@jest/globals";
+import { describe, it, expect, beforeEach, jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CheckboxItem } from "../CheckboxItem";
 
+// Mock do hook useStudyPlan
+const mockToggleItem = jest.fn();
+const mockInputValues: Record<string, boolean> = {};
+
+jest.mock("../../contexts/StudyPlanContext", () => ({
+  useStudyPlan: () => ({
+    inputValues: mockInputValues,
+    toggleItem: mockToggleItem,
+  }),
+}));
+
 describe("CheckboxItem", () => {
   beforeEach(() => {
-    localStorage.clear();
+    jest.clearAllMocks();
+    // Limpar o objeto mockInputValues
+    for (const key in mockInputValues) delete mockInputValues[key];
   });
 
   it("deve renderizar o checkbox com label", () => {
-    render(
-      <CheckboxItem id="test-1" text="Learn React" initialChecked={false} />
-    );
+    render(<CheckboxItem id="test-1" text="Learn React" />);
     expect(screen.getByText("Learn React")).toBeInTheDocument();
   });
 
-  it("deve iniciar marcado quando initialChecked é true", () => {
-    render(
-      <CheckboxItem id="test-1" text="Learn React" initialChecked={true} />
-    );
+  it("deve iniciar marcado quando inputValues tem o id como true", () => {
+    mockInputValues["test-1"] = true;
+    render(<CheckboxItem id="test-1" text="Learn React" />);
     const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
     expect(checkbox.checked).toBe(true);
   });
 
-  it("deve iniciar desmarcado quando initialChecked é false", () => {
-    render(
-      <CheckboxItem id="test-1" text="Learn React" initialChecked={false} />
-    );
+  it("deve iniciar desmarcado quando inputValues não tem o id", () => {
+    render(<CheckboxItem id="test-1" text="Learn React" />);
     const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
     expect(checkbox.checked).toBe(false);
   });
 
-  it("deve alternar o estado ao clicar", async () => {
+  it("deve chamar toggleItem ao clicar", async () => {
     const user = userEvent.setup();
-    render(
-      <CheckboxItem id="test-1" text="Learn React" initialChecked={false} />
-    );
-
-    const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
-    expect(checkbox.checked).toBe(false);
-
-    await user.click(checkbox);
-    expect(checkbox.checked).toBe(true);
-
-    await user.click(checkbox);
-    expect(checkbox.checked).toBe(false);
-  });
-
-  it("deve salvar o estado no localStorage", async () => {
-    const user = userEvent.setup();
-    render(
-      <CheckboxItem id="test-1" text="Learn React" initialChecked={false} />
-    );
+    render(<CheckboxItem id="test-1" text="Learn React" />);
 
     const checkbox = screen.getByRole("checkbox");
     await user.click(checkbox);
 
-    expect(localStorage.getItem("test-1")).toBe("true");
+    expect(mockToggleItem).toHaveBeenCalledWith("test-1");
   });
 });

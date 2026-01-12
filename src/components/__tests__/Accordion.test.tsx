@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Accordion } from "../Accordion";
@@ -17,16 +17,25 @@ const mockDomain: Domain = {
   ],
 };
 
+jest.mock("../../contexts/StudyPlanContext", () => ({
+  useStudyPlan: () => ({
+    getDomainProgress: jest.fn().mockReturnValue(50),
+    inputValues: {},
+    toggleItem: jest.fn(),
+  }),
+}));
+
 describe("Accordion", () => {
   it("deve renderizar o título do domínio", () => {
-    render(<Accordion domain={mockDomain} />);
+    render(<Accordion domain={mockDomain} planId="test-plan" />);
     expect(screen.getByText("EC2")).toBeInTheDocument();
   });
 
   it("deve alternar entre aberto e fechado ao clicar", async () => {
     const user = userEvent.setup();
-    render(<Accordion domain={mockDomain} />);
+    render(<Accordion domain={mockDomain} planId="test-plan" />);
 
+    // Busca o botão pelo texto do título (EC2) para evitar conflito com outros botões
     const button = screen.getByRole("button", { name: /EC2/i });
 
     // Começa fechado
@@ -43,11 +52,16 @@ describe("Accordion", () => {
 
   it("deve exibir os dias quando aberto", async () => {
     const user = userEvent.setup();
-    render(<Accordion domain={mockDomain} />);
+    render(<Accordion domain={mockDomain} planId="test-plan" />);
 
     const button = screen.getByRole("button", { name: /EC2/i });
     await user.click(button);
 
     expect(screen.getByText("Day 1 - Basics")).toBeInTheDocument();
+  });
+
+  it("deve exibir a porcentagem de progresso", () => {
+    render(<Accordion domain={mockDomain} planId="test-plan" />);
+    expect(screen.getByText("50%")).toBeInTheDocument();
   });
 });

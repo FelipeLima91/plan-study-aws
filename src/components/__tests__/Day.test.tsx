@@ -1,8 +1,16 @@
 import "@testing-library/jest-dom";
-import { describe, it, expect, beforeEach } from "@jest/globals";
+import { describe, it, expect, beforeEach, jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import { Day } from "../Day";
 import { Day as DayType } from "../../types";
+
+// Mock do hook useStudyPlan para os componentes filhos (CheckboxItem)
+jest.mock("../../contexts/StudyPlanContext", () => ({
+  useStudyPlan: () => ({
+    inputValues: {},
+    toggleItem: jest.fn(),
+  }),
+}));
 
 const mockDay: DayType = {
   id: "day-1",
