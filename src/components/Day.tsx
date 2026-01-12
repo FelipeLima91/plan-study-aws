@@ -7,11 +7,6 @@ interface DayProps {
 }
 
 export function Day({ day }: DayProps) {
-  const getCheckboxState = (checkId: string): boolean => {
-    const saved = localStorage.getItem(checkId);
-    return saved === 'true';
-  };
-
   return (
     <div className="day" id={day.id}>
       <h2>{day.title}</h2>
@@ -21,7 +16,6 @@ export function Day({ day }: DayProps) {
             key={item.id}
             id={item.id}
             text={item.text}
-            initialChecked={getCheckboxState(item.id)}
           />
         ))}
       </div>

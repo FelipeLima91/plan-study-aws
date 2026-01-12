@@ -1,13 +1,13 @@
-import { useLocalStorageBoolean } from '../hooks/useLocalStorage';
+import { useStudyPlan } from '../contexts/StudyPlanContext';
 
 interface CheckboxItemProps {
   id: string;
   text: string;
-  initialChecked: boolean;
 }
 
-export function CheckboxItem({ id, text, initialChecked }: CheckboxItemProps) {
-  const [checked, setChecked] = useLocalStorageBoolean(id, initialChecked);
+export function CheckboxItem({ id, text }: CheckboxItemProps) {
+  const { inputValues, toggleItem } = useStudyPlan();
+  const checked = inputValues[id] || false;
 
   return (
     <label className="custom-checkbox">
@@ -15,7 +15,7 @@ export function CheckboxItem({ id, text, initialChecked }: CheckboxItemProps) {
         type="checkbox"
         id={id}
         checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
+        onChange={() => toggleItem(id)}
         className="checkbox-input"
       />
       <span className="checkbox-custom"></span>
