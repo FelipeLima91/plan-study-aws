@@ -26,7 +26,7 @@ Este projeto foi desenvolvido com:
 
 ```bash
 git clone https://github.com/FelipeLima91/plan-study-aws.git
-cd plan-study-aws/plan-study-aws
+cd plan-study-aws
 ```
 
 2. Instale as dependências:
