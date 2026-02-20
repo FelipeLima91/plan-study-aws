@@ -32,19 +32,19 @@ function App() {
   const selectedPlan = availablePlans.find((p) => p.id === selectedPlanId);
 
   return (
-    <div className="container" style={{ overflowX: 'hidden' }}>
-      <AnimatePresence mode="wait">
-        {selectedPlan ? (
+    <AnimatePresence mode="wait">
+      {selectedPlan ? (
+        <div style={{ padding: '20px', overflowX: 'hidden' }}>
           <StudyPlanView key="plan-view" planConfig={selectedPlan} onBack={handleBack} />
-        ) : (
-          <PlanSelection
-            key="plan-selection"
-            plans={availablePlans}
-            onSelectPlan={handleSelectPlan}
-          />
-        )}
-      </AnimatePresence>
-    </div>
+        </div>
+      ) : (
+        <PlanSelection
+          key="plan-selection"
+          plans={availablePlans}
+          onSelectPlan={handleSelectPlan}
+        />
+      )}
+    </AnimatePresence>
   );
 }
 
