@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PlanSelection } from '../PlanSelection';
@@ -9,9 +9,10 @@ const mockPlans: PlanConfig[] = [
   {
     id: 'plan-1',
     title: 'AWS Solutions Architect',
-    description: 'Preparação para SAA',
+
     style: {
       backgroundGradient: 'linear-gradient(135deg, #FF9900, #FF6B00)',
+      borderColor: '#FF9900',
       color: '#FFFFFF',
     },
     data: {
@@ -26,9 +27,10 @@ const mockPlans: PlanConfig[] = [
   {
     id: 'plan-2',
     title: 'AWS Developer',
-    description: 'Preparação para Developer',
+
     style: {
       backgroundGradient: 'linear-gradient(135deg, #FF9900, #FF6B00)',
+      borderColor: '#FF9900',
       color: '#FFFFFF',
     },
     data: {
@@ -46,7 +48,7 @@ describe('PlanSelection', () => {
   it('deve renderizar título', () => {
     const mockHandler = jest.fn();
     render(<PlanSelection plans={mockPlans} onSelectPlan={mockHandler} />);
-    expect(screen.getByText(/Escolha seu Plano de Estudos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Seu Plano de Estudos AWS/i)).toBeInTheDocument();
   });
 
   it('deve renderizar todos os planos', () => {

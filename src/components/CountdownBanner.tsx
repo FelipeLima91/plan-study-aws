@@ -1,6 +1,7 @@
 import { useTheme } from '../hooks/useTheme';
 import { useCountdown } from '../hooks/useCountdown';
 import { useLocalStorageString } from '../hooks/useLocalStorage';
+import { Sun, Moon } from 'lucide-react';
 
 interface CountdownBannerProps {
   onBack?: () => void;
@@ -57,19 +58,30 @@ export function CountdownBanner({ onBack, planId }: CountdownBannerProps) {
       >
         {countdownText}
       </span>
-      <span
+      <button
         id="theme-toggle"
         onClick={toggleTheme}
         style={{
           position: 'absolute',
           right: '10px',
-          cursor: 'pointer',
-          fontSize: '1.5rem',
           zIndex: 10,
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '36px',
+          height: '36px',
+          borderRadius: '50%',
+          color: '#ffffff',
+          padding: 0,
+          boxShadow: 'none',
         }}
+        aria-label={isDarkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
       >
-        {isDarkMode ? '🌜' : '🌞'}
-      </span>
+        {isDarkMode ? <Sun size={22} color="#ffffff" /> : <Moon size={22} color="#ffffff" />}
+      </button>
     </div>
   );
 }

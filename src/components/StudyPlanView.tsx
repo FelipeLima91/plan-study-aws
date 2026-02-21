@@ -98,7 +98,30 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
       {planConfig.data.domains.map((domain) => (
         <Accordion key={domain.id} domain={domain} planId={planConfig.id} />
       ))}
-      <Footer config={planConfig.footerConfig} />
+      {planConfig.footerConfig && (
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: '0.8em',
+            color: '#888',
+            marginTop: '30px',
+            marginBottom: '8px',
+          }}
+        >
+          Baseado no{' '}
+          <a
+            href={planConfig.footerConfig.examLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#aaa', textDecoration: 'underline' }}
+          >
+            {planConfig.footerConfig.examName}
+          </a>{' '}
+          · Acesso em {planConfig.footerConfig.lastAccessDate}. Este guia pode estar desatualizado —
+          consulte o site oficial da AWS.
+        </p>
+      )}
+      <Footer />
     </motion.div>
   );
 }
