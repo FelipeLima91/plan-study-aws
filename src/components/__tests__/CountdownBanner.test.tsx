@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CountdownBanner } from '../CountdownBanner';
@@ -19,7 +19,7 @@ describe('CountdownBanner', () => {
     const mockOnBack = jest.fn();
     render(<CountdownBanner planId="plan-1" onBack={mockOnBack} />);
 
-    const backButton = screen.getByRole('button');
+    const backButton = screen.getByRole('button', { name: /</i });
     expect(backButton).toBeInTheDocument();
   });
 
@@ -28,7 +28,7 @@ describe('CountdownBanner', () => {
     const mockOnBack = jest.fn();
     render(<CountdownBanner planId="plan-1" onBack={mockOnBack} />);
 
-    const backButton = screen.getByRole('button');
+    const backButton = screen.getByRole('button', { name: /</i });
     await user.click(backButton);
 
     expect(mockOnBack).toHaveBeenCalled();

@@ -7,6 +7,9 @@ export function useTheme(): [boolean, () => void] {
 
   useEffect(() => {
     setIsDarkMode(theme === 'dark');
+    // Set daisyUI theme via data-theme attribute
+    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+    // Keep dark-mode class for backward compatibility with existing CSS
     if (theme === 'dark') {
       document.body.classList.add('dark-mode');
     } else {
