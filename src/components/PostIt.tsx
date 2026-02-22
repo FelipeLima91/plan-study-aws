@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { Save, Undo } from 'lucide-react';
 
@@ -16,13 +16,13 @@ export function PostIt({ dayId }: PostItProps) {
   const [postIts, setPostIts] = useLocalStorage<PostItNote[]>(`${dayId}-postits`, []);
   const [inputText, setInputText] = useState('');
   const [deletedNote, setDeletedNote] = useState<PostItNote | null>(null);
-  const hideToastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const hideToastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Função para detectar e converter URLs em links
-  const formatTextWithLinks = (text: string): (string | JSX.Element)[] => {
+  const formatTextWithLinks = (text: string): (string | React.ReactElement)[] => {
     // Regex melhorado para detectar URLs (http, https, www, e links sem protocolo)
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,}[^\s]*)/g;
-    const parts: (string | JSX.Element)[] = [];
+    const parts: (string | React.ReactElement)[] = [];
     let lastIndex = 0;
     let match;
     let key = 0;

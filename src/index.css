@@ -5,13 +5,6 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   margin: 0;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-h1 {
-  color: #232f3e;
-  text-align: center;
 }
 
 h2 {
@@ -39,10 +32,6 @@ h2 {
   gap: 6px;
 }
 
-.notes {
-  margin-top: 15px;
-}
-
 /* Post-It Styles */
 .postit-container {
   margin-top: 20px;
@@ -64,12 +53,6 @@ h2 {
   resize: vertical;
 }
 
-.btn-sm {
-  padding: 8px 16px;
-  font-size: 0.9em;
-  white-space: nowrap;
-}
-
 .postit-notes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -84,14 +67,6 @@ h2 {
 
   .postit-input-wrapper {
     flex-direction: column;
-  }
-
-  .btn-sm {
-    width: 100%;
-  }
-
-  .exam-date-display {
-    width: 100%;
   }
 }
 
@@ -186,104 +161,7 @@ h2 {
   transform: scale(0.95);
 }
 
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #777;
-}
-
-#countdown-banner {
-  background-color: #232f3e;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  position: relative;
-}
-
-#theme-toggle {
-  font-size: 1.5em;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-body.dark-mode #countdown-banner {
-  background-color: #333333;
-}
-
-.alert {
-  color: #616161;
-  font-size: small;
-}
-
-.exam-date {
-  text-align: center;
-  margin-bottom: 0;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.exam-date-display {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
-  padding: 10px 15px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  gap: 10px;
-  width: fit-content;
-}
-
-.exam-date-label-display {
-  font-weight: 600;
-  font-size: 0.95em;
-  color: #232f3e;
-}
-
-.exam-date-value {
-  font-size: 0.95em;
-  color: #ff9900;
-  font-weight: 500;
-}
-
-.exam-date-value.clickable {
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  transition: all 0.2s ease;
-}
-
-.exam-date-value.clickable:hover {
-  color: #e68a00;
-  text-decoration-color: #e68a00;
-}
-
-.exam-date-label {
-  display: block;
-  font-weight: 600;
-  font-size: 1.1em;
-  color: #232f3e;
-  margin-bottom: 12px;
-}
-
-.exam-date-input-group {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* Form Control - Bootstrap Style */
+/* Form Control - PostIt textarea */
 .form-control {
   display: block;
   padding: 10px 14px;
@@ -309,42 +187,22 @@ body.dark-mode #countdown-banner {
   box-shadow: 0 0 0 0.2rem rgba(255, 153, 0, 0.25);
 }
 
-.date-input {
-  min-width: 200px;
-  cursor: pointer;
-}
-
-.date-input::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.date-input::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-}
-
 /* DaisyUI Accordion hover effect */
 .accordion-hover {
   transition: background-color 0.2s ease;
 }
 
 .accordion-hover:hover {
-  background-color: #f0f0f0;
+  background-color: #e5e5e5;
 }
 
 body.dark-mode .accordion-hover:hover {
-  background-color: #2c2c2c;
+  background-color: #3a3a3a;
 }
 
-/* 
-  Dark mode 
+/*
+  Dark mode
 */
-body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
 body.dark-mode .day {
   background-color: #1e1e1e;
   color: #ffffff;
@@ -388,37 +246,6 @@ body.dark-mode .postit-delete:hover {
   color: #ef5350;
 }
 
-body.dark-mode #countdown-banner {
-  background-color: #333333;
-}
-
-body.dark-mode .exam-date {
-  background-color: #1e1e1e;
-  border: 1px solid #444;
-}
-
-body.dark-mode .exam-date-display {
-  background-color: #1e1e1e;
-  border: 1px solid #444;
-}
-
-body.dark-mode .exam-date-label-display {
-  color: #fff;
-}
-
-body.dark-mode .exam-date-value {
-  color: #ff9900;
-}
-
-body.dark-mode .exam-date-value.clickable:hover {
-  color: #ffaa11;
-  text-decoration-color: #ffaa11;
-}
-
-body.dark-mode .exam-date-label {
-  color: #fff;
-}
-
 body.dark-mode .form-control {
   background-color: #333;
   color: #fff;
@@ -429,8 +256,4 @@ body.dark-mode .form-control:focus {
   background-color: #3a3a3a;
   border-color: #ff9900;
   color: #fff;
-}
-
-body.dark-mode h1 {
-  color: #ff9900;
 }

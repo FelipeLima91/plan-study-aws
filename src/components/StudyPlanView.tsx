@@ -97,20 +97,33 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
     }
   }, [activeMilestoneMessage]);
 
+  const handleClearData = () => {
+    try {
+      const keysToRemove: string[] = [];
+      keysToRemove.push(`examDate-${planConfig.id}`);
+      keysToRemove.push(`hideExamDate-${planConfig.id}`);
+
+      planConfig.data.domains.forEach((domain) => {
+        keysToRemove.push(`accordion_${planConfig.id}_${domain.id}`);
+        domain.days.forEach((day) => {
+          keysToRemove.push(`${day.id}-postits`);
+          day.checklist.forEach((item) => {
+            keysToRemove.push(item.id);
+          });
+        });
+      });
+
+      keysToRemove.forEach((key) => localStorage.removeItem(key));
+      window.location.reload();
+    } catch (e) {
+      console.error('Erro ao limpar dados', e);
+    }
+  };
+
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="exit">
       {showConfetti && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: 9999,
-            pointerEvents: 'none',
-          }}
-        >
+        <div className="fixed inset-0 w-screen h-screen z-[9999] pointer-events-none">
           <Confetti
             width={width}
             height={height}
@@ -122,7 +135,7 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
       )}
 
       {/* DaisyUI Navbar */}
-      <div className="navbar bg-base-100 shadow-sm rounded-box mb-6 relative z-50">
+      <div className="navbar bg-base-200 shadow-sm rounded-box mb-6 relative z-50">
         <div className="flex-none">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-square btn-ghost" aria-label="Menu">
@@ -152,7 +165,7 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
           </div>
         </div>
         <div className="flex-1 justify-center">
-          <h1 className="text-xl font-bold m-0 p-0 text-center" style={{ color: 'inherit' }}>
+          <h1 className="text-xl font-bold m-0 p-0 text-center text-base-content">
             {planConfig.title}
           </h1>
         </div>
@@ -200,36 +213,7 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
           <div className="modal-action">
             <form method="dialog">
               <button className="btn mr-2">Cancelar</button>
-              <button
-                className="btn btn-error"
-                onClick={() => {
-                  try {
-                    const keysToRemove: string[] = [];
-                    // Chaves gerais do plano
-                    keysToRemove.push(`examDate-${planConfig.id}`);
-                    keysToRemove.push(`hideExamDate-${planConfig.id}`);
-
-                    // Iterar sobre a estrutura do plano para pegar todas as chaves
-                    planConfig.data.domains.forEach((domain) => {
-                      keysToRemove.push(`accordion_${planConfig.id}_${domain.id}`);
-                      domain.days.forEach((day) => {
-                        keysToRemove.push(`${day.id}-postits`);
-                        day.checklist.forEach((item) => {
-                          keysToRemove.push(item.id);
-                        });
-                      });
-                    });
-
-                    // Limpar as chaves relacionadas ao plano atual
-                    keysToRemove.forEach((key) => localStorage.removeItem(key));
-
-                    // Forçar atualização da página para refletir as mudanças
-                    window.location.reload();
-                  } catch (e) {
-                    console.error('Erro ao limpar dados', e);
-                  }
-                }}
-              >
+              <button className="btn btn-error" onClick={handleClearData}>
                 Sim, Limpar Tudo
               </button>
             </form>
@@ -286,21 +270,13 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
         <Accordion key={domain.id} domain={domain} planId={planConfig.id} />
       ))}
       {planConfig.footerConfig && (
-        <p
-          style={{
-            textAlign: 'center',
-            fontSize: '0.8em',
-            color: '#888',
-            marginTop: '30px',
-            marginBottom: '8px',
-          }}
-        >
+        <p className="text-center text-xs text-base-content/60 mt-8 mb-2">
           Baseado no{' '}
           <a
             href={planConfig.footerConfig.examLink}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: '#aaa', textDecoration: 'underline' }}
+            className="text-base-content/50 underline hover:text-base-content/70 transition-colors"
           >
             {planConfig.footerConfig.examName}
           </a>{' '}

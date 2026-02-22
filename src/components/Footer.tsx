@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="footer bg-base-300 text-base-content py-6 px-6 sm:px-8 mt-12 flex flex-col sm:flex-row items-center justify-between shadow-sm">
+    <footer className="footer bg-base-300 text-base-content py-6 px-6 sm:px-8 mt-12 flex flex-col sm:flex-row items-center justify-between shadow-sm rounded-box">
       <p className="text-sm font-medium m-0 mb-4 sm:mb-0 w-full sm:w-auto text-center sm:text-left">
         Feito com ❤️ por Felipe Lima
       </p>

@@ -1,25 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocalStorageString } from './useLocalStorage';
 
 export function useTheme(): [boolean, () => void] {
   const [theme, setTheme] = useLocalStorageString('theme', 'light');
-  const [isDarkMode, setIsDarkMode] = useState(theme === 'dark');
+  const isDarkMode = theme === 'dark';
 
   useEffect(() => {
-    setIsDarkMode(theme === 'dark');
     // Set daisyUI theme via data-theme attribute
-    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     // Keep dark-mode class for backward compatibility with existing CSS
-    if (theme === 'dark') {
+    if (isDarkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
-  }, [theme]);
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
+    setTheme(isDarkMode ? 'light' : 'dark');
   };
 
   return [isDarkMode, toggleTheme];

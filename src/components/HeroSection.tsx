@@ -14,7 +14,7 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative isolate min-h-screen flex flex-col overflow-hidden bg-white"
+      className="relative isolate min-h-screen flex flex-col overflow-hidden bg-base-100"
     >
       <div className="flex-1 flex flex-col items-center justify-center w-full">
         {/* Top-right decorative gradient blob (blue/indigo) */}
@@ -51,7 +51,7 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="font-sans text-2xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl"
+            className="font-sans text-2xl font-bold tracking-tight text-base-content sm:text-4xl lg:text-5xl"
           >
             Seu Plano de Estudos AWS
           </motion.h1>
@@ -61,7 +61,7 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl text-base leading-7 text-black sm:text-lg"
+            className="mx-auto mt-6 max-w-2xl text-base leading-7 text-base-content sm:text-lg"
           >
             Organize seus estudos com planos estruturados de 30 dias, acompanhe seu progresso e
             conquiste sua certificação AWS com confiança.
@@ -95,22 +95,22 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="mx-auto mt-16 max-w-2xl rounded-2xl border border-black/10 bg-white/60 p-6 text-left backdrop-blur-lg"
+            className="mx-auto mt-16 max-w-2xl rounded-2xl border border-base-content/10 bg-base-100/60 p-6 text-left backdrop-blur-lg"
           >
-            <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-black">
+            <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-base-content">
               📌 Aviso Importante
             </div>
-            <p className="mb-2 text-sm leading-relaxed text-black">
+            <p className="mb-2 text-sm leading-relaxed text-base-content">
               Este site foi desenvolvido como um projeto pessoal, com o objetivo de servir como uma
               ferramenta de apoio ao aprendizado. O plano de 30 dias de estudos é apenas um exemplo
               de organização como outros sites e cursos. Recomendamos o estudo diário de 1 hora.
             </p>
-            <p className="mb-2 text-sm leading-relaxed text-black">
+            <p className="mb-2 text-sm leading-relaxed text-base-content">
               Se você tiver mais dias disponíveis, melhor ainda — isso permite estudar com mais
               calma. Caso tenha menos dias, será necessário aumentar a carga diária de estudos para
               compensar.
             </p>
-            <p className="text-sm font-medium text-black">
+            <p className="text-sm font-medium text-base-content">
               Adapte o ritmo à sua realidade e bons estudos! 🚀
             </p>
           </motion.div>

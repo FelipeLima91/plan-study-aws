@@ -26,7 +26,7 @@ export function Accordion({ domain, planId }: AccordionProps) {
   return (
     <motion.div variants={itemVariants}>
       <details
-        className="collapse collapse-arrow bg-base-100 border border-base-200 rounded-lg mb-2 accordion-hover"
+        className="collapse collapse-arrow bg-base-200 border border-base-300 rounded-lg mb-2 accordion-hover"
         open={isOpen}
         onToggle={handleToggle}
       >

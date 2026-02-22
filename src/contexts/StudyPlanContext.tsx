@@ -1,5 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  ReactNode,
+} from 'react';
 import { PlanConfig } from '../data/studyPlan';
 
 interface StudyPlanContextType {
@@ -56,26 +64,29 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
     });
   };
 
-  const getDomainProgress = (domainId: string) => {
-    const domain = planConfig.data.domains.find((d) => d.id === domainId);
-    if (!domain) return 0;
+  const getDomainProgress = useCallback(
+    (domainId: string) => {
+      const domain = planConfig.data.domains.find((d) => d.id === domainId);
+      if (!domain) return 0;
 
-    let total = 0;
-    let completed = 0;
+      let total = 0;
+      let completed = 0;
 
-    domain.days.forEach((day) => {
-      day.checklist.forEach((item) => {
-        total++;
-        if (inputValues[item.id]) {
-          completed++;
-        }
+      domain.days.forEach((day) => {
+        day.checklist.forEach((item) => {
+          total++;
+          if (inputValues[item.id]) {
+            completed++;
+          }
+        });
       });
-    });
 
-    return total === 0 ? 0 : Math.round((completed / total) * 100);
-  };
+      return total === 0 ? 0 : Math.round((completed / total) * 100);
+    },
+    [inputValues, planConfig],
+  );
 
-  const totalProgress = (() => {
+  const totalProgress = useMemo(() => {
     let total = 0;
     let completed = 0;
 
@@ -91,11 +102,12 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
     });
 
     return total === 0 ? 0 : Math.round((completed / total) * 100);
-  })();
+  }, [inputValues, planConfig]);
 
-  const completedDomainsCount = planConfig.data.domains.filter(
-    (domain) => getDomainProgress(domain.id) === 100,
-  ).length;
+  const completedDomainsCount = useMemo(
+    () => planConfig.data.domains.filter((domain) => getDomainProgress(domain.id) === 100).length,
+    [planConfig, getDomainProgress],
+  );
 
   const totalDomainsCount = planConfig.data.domains.length;
 
