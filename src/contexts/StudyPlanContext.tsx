@@ -6,6 +6,8 @@ interface StudyPlanContextType {
   toggleItem: (id: string) => void;
   getDomainProgress: (domainId: string) => number;
   totalProgress: number;
+  completedDomainsCount: number;
+  totalDomainsCount: number;
 }
 
 const StudyPlanContext = createContext<StudyPlanContextType | undefined>(undefined);
@@ -90,9 +92,22 @@ export function StudyPlanProvider({ children, planConfig }: StudyPlanProviderPro
     return total === 0 ? 0 : Math.round((completed / total) * 100);
   })();
 
+  const completedDomainsCount = planConfig.data.domains.filter(
+    (domain) => getDomainProgress(domain.id) === 100,
+  ).length;
+
+  const totalDomainsCount = planConfig.data.domains.length;
+
   return (
     <StudyPlanContext.Provider
-      value={{ inputValues, toggleItem, getDomainProgress, totalProgress }}
+      value={{
+        inputValues,
+        toggleItem,
+        getDomainProgress,
+        totalProgress,
+        completedDomainsCount,
+        totalDomainsCount,
+      }}
     >
       {children}
     </StudyPlanContext.Provider>

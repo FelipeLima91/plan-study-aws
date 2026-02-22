@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { Save } from 'lucide-react';
 
 interface PostItNote {
   id: string;
@@ -79,23 +80,29 @@ export function PostIt({ dayId }: PostItProps) {
     <div className="postit-container">
       <div className="postit-input-section">
         <strong>Anotações:</strong>
-        <div className="postit-input-wrapper">
+        <div className="postit-input-wrapper flex-col w-full">
           <textarea
-            className="form-control postit-textarea"
-            placeholder="Escreva suas anotações aqui... (Ctrl+Enter para salvar)"
+            className="form-control postit-textarea w-full"
+            placeholder="Escreva suas anotações aqui..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={handleKeyPress}
             rows={3}
           />
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={handleSave}
-            disabled={!inputText.trim()}
-          >
-            <span className="btn-icon">💾</span>
-            Salvar
-          </button>
+          <div className="flex justify-between items-center w-full">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={handleSave}
+              disabled={!inputText.trim()}
+            >
+              <Save size={16} className="mr-1" />
+              Salvar
+            </button>
+            <div className="text-xs opacity-60 flex items-center gap-1 px-1">
+              Pressione <kbd className="kbd kbd-xs">Ctrl</kbd> +{' '}
+              <kbd className="kbd kbd-xs">Enter</kbd> para salvar
+            </div>
+          </div>
         </div>
       </div>
 
