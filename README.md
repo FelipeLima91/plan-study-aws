@@ -19,6 +19,8 @@ Aplicação web para organizar seus estudos para certificações AWS com planos 
 | Build tool   | Vite 5                        |
 | Estilização  | Tailwind CSS v4 + DaisyUI 5   |
 | Animações    | Framer Motion                 |
+| Ícones       | Lucide React                  |
+| PDF          | jsPDF                         |
 | Testes       | Jest + React Testing Library  |
 | Lint/Formato | ESLint + Prettier             |
 | Git Hooks    | Husky + lint-staged           |
@@ -136,14 +138,17 @@ plan-study-aws/
 ├── src/
 │   ├── components/        # Componentes React
 │   │   ├── Accordion.tsx
+│   │   ├── CacheInfoModal.tsx
 │   │   ├── CheckboxItem.tsx
 │   │   ├── Day.tsx
 │   │   ├── ExamDateForm.tsx
 │   │   ├── Footer.tsx
 │   │   ├── HeroSection.tsx
+│   │   ├── NotesStatsModal.tsx
 │   │   ├── PlanSelection.tsx
 │   │   ├── PostIt.tsx
 │   │   ├── StudyPlanView.tsx
+│   │   ├── StudyTimer.tsx
 │   │   └── __tests__/     # Testes dos componentes
 │   ├── contexts/          # React Context (estado global)
 │   │   └── StudyPlanContext.tsx
@@ -172,11 +177,15 @@ plan-study-aws/
 - ✅ Planos de estudo de 30 dias para múltiplas certificações AWS
 - ✅ Checklists interativas com progresso por domínio e progresso geral
 - ✅ Contagem regressiva para a data da prova
+- ✅ Cronômetro de estudo com presets (15/30/60 min), incrementos e widget flutuante
 - ✅ Anotações (post-its) com suporte a links para cada dia
+- ✅ Estatísticas de anotações com exportação em PDF, TXT e Markdown
+- ✅ Monitor de uso de cache (localStorage)
 - ✅ Modo escuro / claro (DaisyUI data-theme)
+- ✅ Accordion exclusivo (abre um, fecha os outros)
 - ✅ Mensagens motivacionais por milestones de progresso
 - ✅ Confetti ao completar 100% do plano 🎉
-- ✅ Persistência completa no localStorage (checkboxes, accordion, anotações, tema, data do exame)
+- ✅ Persistência completa no localStorage (checkboxes, anotações, tema, data do exame)
 - ✅ Interface responsiva (mobile e desktop)
 - ✅ Animações suaves com Framer Motion
 - ✅ Limpeza de dados por plano (com confirmação)
@@ -196,6 +205,12 @@ plan-study-aws/
 ## 🤝 Contribuição
 
 Sinta-se à vontade para contribuir enviando pull requests ou abrindo issues.
+
+---
+
+## 🤖 Regras para IA
+
+Este projeto inclui um arquivo `AI_RULES.md` com diretrizes para assistentes de IA que interagem com o código. Consulte-o para manter consistência.
 
 ---
 

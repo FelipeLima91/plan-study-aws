@@ -27,13 +27,18 @@ jest.mock('../../contexts/StudyPlanContext', () => ({
 
 describe('Accordion', () => {
   it('deve renderizar o título do domínio', () => {
-    render(<Accordion domain={mockDomain} planId="test-plan" />);
+    render(
+      <Accordion domain={mockDomain} planId="test-plan" isOpen={false} onToggle={jest.fn()} />,
+    );
     expect(screen.getByText('EC2')).toBeInTheDocument();
   });
 
   it('deve alternar entre aberto e fechado ao clicar', async () => {
     const user = userEvent.setup();
-    render(<Accordion domain={mockDomain} planId="test-plan" />);
+    const handleToggle = jest.fn();
+    render(
+      <Accordion domain={mockDomain} planId="test-plan" isOpen={false} onToggle={handleToggle} />,
+    );
 
     const details = document.querySelector('details') as HTMLDetailsElement;
     expect(details).toBeTruthy();
@@ -44,25 +49,27 @@ describe('Accordion', () => {
     // Clica no summary para abrir
     const summary = screen.getByText('EC2');
     await user.click(summary);
-    expect(details.open).toBe(true);
+    expect(handleToggle).toHaveBeenCalledWith('domain-1', true);
 
     // Clica novamente para fechar
     await user.click(summary);
-    expect(details.open).toBe(false);
+    // Note: since this is a controlled component we actually test if onToggle is called again
+    // but the details.open state in testing library depends on whether we re-render with isOpen={true}.
+    // We'll just verify onToggle was called.
+    expect(handleToggle).toHaveBeenCalledTimes(2);
   });
 
   it('deve exibir os dias quando aberto', async () => {
-    const user = userEvent.setup();
-    render(<Accordion domain={mockDomain} planId="test-plan" />);
-
-    const summary = screen.getByText('EC2');
-    await user.click(summary);
+    // Render as open to see days
+    render(<Accordion domain={mockDomain} planId="test-plan" isOpen={true} onToggle={jest.fn()} />);
 
     expect(screen.getByText('Day 1 - Basics')).toBeInTheDocument();
   });
 
   it('deve exibir a porcentagem de progresso', () => {
-    render(<Accordion domain={mockDomain} planId="test-plan" />);
+    render(
+      <Accordion domain={mockDomain} planId="test-plan" isOpen={false} onToggle={jest.fn()} />,
+    );
     expect(screen.getByText('50%')).toBeInTheDocument();
   });
 });
