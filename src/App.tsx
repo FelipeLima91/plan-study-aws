@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion';
 import { availablePlans } from './data/studyPlan';
 import { PlanSelection } from './components/PlanSelection';
 import { StudyPlanView } from './components/StudyPlanView';
-// Footer imported removed
 
 function App() {
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);

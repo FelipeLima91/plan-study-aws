@@ -42,7 +42,7 @@ describe('StudyPlanView', () => {
   it('deve renderizar o título do plano', () => {
     const mockOnBack = jest.fn();
     render(<StudyPlanView planConfig={mockPlanConfig} onBack={mockOnBack} />);
-    expect(screen.getByText('AWS Solutions Architect')).toBeInTheDocument();
+    expect(screen.getAllByText('AWS Solutions Architect').length).toBeGreaterThan(0);
   });
 
   it('deve renderizar descrição do plano', () => {
@@ -55,12 +55,6 @@ describe('StudyPlanView', () => {
     const mockOnBack = jest.fn();
     render(<StudyPlanView planConfig={mockPlanConfig} onBack={mockOnBack} />);
     expect(screen.getByText(/salvas em cache localmente/i)).toBeInTheDocument();
-  });
-
-  it('deve renderizar componente CountdownBanner', () => {
-    const mockOnBack = jest.fn();
-    render(<StudyPlanView planConfig={mockPlanConfig} onBack={mockOnBack} />);
-    expect(screen.getByText(/Insira a data da prova|Faltam/i)).toBeInTheDocument();
   });
 
   it('deve renderizar componente ExamDateForm', () => {

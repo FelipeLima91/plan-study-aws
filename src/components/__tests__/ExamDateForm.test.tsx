@@ -9,18 +9,18 @@ describe('ExamDateForm', () => {
   });
 
   it('deve renderizar o formulário em modo de entrada', () => {
-    render(<ExamDateForm planId="plan-1" />);
-    const input = screen.getByDisplayValue('');
-    expect(input).toBeInTheDocument();
+    render(<ExamDateForm planId="plan-1" hideExamDate={false} setHideExamDate={jest.fn()} />);
+    // Verify the "Incluir data da prova" button is rendered initially
+    expect(screen.getByRole('button', { name: /Incluir data da prova/i })).toBeInTheDocument();
   });
 
   it('deve renderizar botão de salvar', () => {
-    render(<ExamDateForm planId="plan-1" />);
-    expect(screen.getByRole('button', { name: /salvar/i })).toBeInTheDocument();
+    render(<ExamDateForm planId="plan-1" hideExamDate={false} setHideExamDate={jest.fn()} />);
+    expect(screen.getByText(/Salvar/i)).toBeInTheDocument();
   });
 
-  it('deve renderizar label data da prova', () => {
-    render(<ExamDateForm planId="plan-1" />);
-    expect(screen.getByText(/Data da Prova/i)).toBeInTheDocument();
+  it('deve renderizar o modal de definir data', () => {
+    render(<ExamDateForm planId="plan-1" hideExamDate={false} setHideExamDate={jest.fn()} />);
+    expect(screen.getByText(/Definir data da prova/i)).toBeInTheDocument();
   });
 });

@@ -6,11 +6,10 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   {
-    ignores: ['dist/**', 'node_modules/**'],
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', '*.js', '*.cjs'],
   },
   js.configs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 2020,
@@ -38,8 +37,12 @@ export default [
         URL: 'readonly',
         alert: 'readonly',
         confirm: 'readonly',
+        jest: 'readonly',
       },
     },
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
     plugins: {
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooks,
@@ -47,6 +50,7 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
+      'no-undef': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'react-refresh/only-export-components': [

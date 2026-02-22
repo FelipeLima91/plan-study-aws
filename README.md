@@ -1,125 +1,202 @@
-# Plano de Estudos de 30 Dias para o Exame AWS Certified Developer – Associate (DVA-C02)
+# 📚 Plano de Estudos AWS
 
-Este projeto contém um plano de estudos detalhado para ajudar na preparação para o exame AWS Certified Developer – Associate (DVA-C02) e AWS AI Practitioner. O plano é dividido em 30 dias, cobrindo todos os domínios e tópicos necessários para o exame.
+Aplicação web para organizar seus estudos para certificações AWS com planos estruturados de 30 dias, checklists interativas, anotações e acompanhamento de progresso.
 
-As checklists e comentários são salvos localmente no dispositivo, ou seja, são armazenados em cache. Isso significa que não será possível acessá-los em diferentes dispositivos devido às limitações deste projeto.
+**Certificações disponíveis:**
+
+- AWS Certified Developer – Associate (DVA-C02)
+- AWS AI Practitioner (AIF-C01)
+
+🌐 **Acesse online:** [felipelima91.github.io/plan-study-aws](https://felipelima91.github.io/plan-study-aws/)
+
+---
 
 ## 🚀 Tecnologias
 
-Este projeto foi desenvolvido com:
+| Categoria    | Tecnologia                    |
+| ------------ | ----------------------------- |
+| Framework    | React 18 + TypeScript         |
+| Build tool   | Vite 5                        |
+| Estilização  | Tailwind CSS v4 + DaisyUI 5   |
+| Animações    | Framer Motion                 |
+| Testes       | Jest + React Testing Library  |
+| Lint/Formato | ESLint + Prettier             |
+| Git Hooks    | Husky + lint-staged           |
+| Deploy       | GitHub Actions → GitHub Pages |
 
-- **React 18** - Biblioteca JavaScript para construção de interfaces
-- **TypeScript** - Superset do JavaScript com tipagem estática
-- **Vite** - Build tool moderna e rápida
-- **CSS3** - Estilização com suporte a modo escuro/claro
+---
 
-## 📦 Instalação
+## � Instalação
 
 ### Pré-requisitos
 
-- Node.js (versão 16 ou superior)
-- npm ou yarn
+- **Node.js** 18+ (recomendado: 20)
+- **npm** 9+
 
-### Passos para instalação
-
-1. Clone o repositório:
+### Setup
 
 ```bash
 git clone https://github.com/FelipeLima91/plan-study-aws.git
 cd plan-study-aws
-```
-
-2. Instale as dependências:
-
-```bash
 npm install
 ```
 
-3. Inicie o servidor de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-4. Abra o navegador em `http://localhost:5173` (ou a porta indicada no terminal)
+---
 
 ## 🛠️ Scripts Disponíveis
 
-- `npm run dev` - Inicia o servidor de desenvolvimento com hot-reload
-- `npm run build` - Cria uma build de produção otimizada
-- `npm run preview` - Visualiza a build de produção localmente
+| Comando                 | Descrição                                           |
+| ----------------------- | --------------------------------------------------- |
+| `npm run dev`           | Inicia o servidor de desenvolvimento com hot-reload |
+| `npm run build`         | Compila TypeScript e gera a build de produção       |
+| `npm run preview`       | Visualiza a build de produção localmente            |
+| `npm test`              | Executa todos os testes unitários                   |
+| `npm run test:watch`    | Executa testes em modo watch (re-roda ao salvar)    |
+| `npm run test:coverage` | Executa testes com relatório de cobertura           |
+| `npm run lint`          | Verifica erros de lint (ESLint)                     |
+| `npm run format`        | Formata todo o código (Prettier)                    |
+
+---
+
+## ✅ Antes de Commitar (Checklist)
+
+O projeto usa **Husky + lint-staged** para rodar automaticamente no `pre-commit`:
+
+```
+git commit → Husky → lint-staged → Prettier + ESLint (nos arquivos staged)
+```
+
+Mas é altamente recomendado verificar manualmente **antes** de commitar:
+
+### 1. Rodar os testes
+
+```bash
+npm test
+```
+
+Certifique-se de que **todos os testes passam**. Se quiser ver a cobertura:
+
+```bash
+npm run test:coverage
+```
+
+### 2. Verificar o lint
+
+```bash
+npm run lint
+```
+
+Deve retornar **0 warnings**. Se houver erros, corrija antes de commitar.
+
+### 3. Verificar se compila
+
+```bash
+npm run build
+```
+
+Se der erro de TypeScript, corrija antes de commitar.
+
+### 4. Formatar o código (opcional)
+
+```bash
+npm run format
+```
+
+> 💡 **Dica:** O `lint-staged` já roda Prettier e ESLint automaticamente nos arquivos staged. Mas rodar manualmente garante que nada ficou fora.
+
+### Resumo rápido
+
+```bash
+npm test && npm run lint && npm run build
+```
+
+Se todos passarem ✅, pode commitar tranquilo!
+
+---
+
+## 🔄 CI/CD
+
+O pipeline do **GitHub Actions** roda automaticamente em cada push na `main`:
+
+1. Instala dependências (`npm ci`)
+2. Executa os testes (`npm test`)
+3. Compila a build (`npm run build`)
+4. Faz deploy no **GitHub Pages**
+
+O arquivo de configuração está em `.github/workflows/deploy.yml`.
+
+---
 
 ## 📁 Estrutura do Projeto
 
 ```
 plan-study-aws/
-├── public/              # Arquivos estáticos
+├── .github/workflows/     # CI/CD (GitHub Actions)
+├── .husky/                # Git hooks (pre-commit)
 ├── src/
-│   ├── components/      # Componentes React
-│   │   ├── CountdownBanner.tsx
-│   │   ├── ExamDateForm.tsx
+│   ├── components/        # Componentes React
 │   │   ├── Accordion.tsx
+│   │   ├── CheckboxItem.tsx
 │   │   ├── Day.tsx
-│   │   └── Footer.tsx
-│   ├── hooks/          # Custom hooks
-│   │   ├── useLocalStorage.ts
+│   │   ├── ExamDateForm.tsx
+│   │   ├── Footer.tsx
+│   │   ├── HeroSection.tsx
+│   │   ├── PlanSelection.tsx
+│   │   ├── PostIt.tsx
+│   │   ├── StudyPlanView.tsx
+│   │   └── __tests__/     # Testes dos componentes
+│   ├── contexts/          # React Context (estado global)
+│   │   └── StudyPlanContext.tsx
+│   ├── hooks/             # Custom hooks
 │   │   ├── useCountdown.ts
-│   │   └── useTheme.ts
-│   ├── types/          # Tipos TypeScript
-│   │   └── index.ts
-│   ├── data/           # Dados do plano de estudos
+│   │   ├── useLocalStorage.ts
+│   │   ├── useTheme.ts
+│   │   └── __tests__/     # Testes dos hooks
+│   ├── data/              # Dados dos planos de estudo
 │   │   └── studyPlan.ts
-│   ├── App.tsx         # Componente principal
-│   ├── main.tsx        # Entry point
-│   └── index.css       # Estilos globais
-├── index.html          # HTML base do Vite
-├── package.json        # Dependências e scripts
-├── tsconfig.json       # Configuração TypeScript
-├── vite.config.ts      # Configuração Vite
-└── README.md
+│   ├── types/             # Tipos TypeScript
+│   │   └── index.ts
+│   ├── App.tsx            # Componente principal
+│   ├── main.tsx           # Entry point
+│   └── index.css          # Estilos globais
+├── index.html             # HTML base do Vite
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
 ```
-
-## 💡 Funcionalidades
-
-- ✅ Contagem regressiva para a data da prova (responsiva)
-- ✅ Checklists interativas com barra de progresso visual (0-100%)
-- ✅ Indicador de progresso geral do plano
-- ✅ Área de anotações para cada dia
-- ✅ Modo escuro/claro
-- ✅ Persistência de dados completa no localStorage (incluindo estado dos acordeões)
-- ✅ Configuração de data independente por plano de estudos
-- ✅ Interface responsiva e moderna
-
-## 🧪 Testes e Qualidade
-
-O projeto preza pela qualidade de código e confiabilidade:
-
-- **Testes Unitários**: Configurados com **Jest** e **React Testing Library**.
-- **CI/CD**: Pipeline automatizada via **GitHub Actions** para execução de testes em cada push/PR.
-- **Boas Práticas**: Código estruturado visando clareza e manutenção.
-
-## 🌐 Acesse o Plano de Estudos
-
-Você pode acessar o plano de estudos online através do GitHub Pages: [Plano de Estudos AWS](https://felipelima91.github.io/plan-study-aws/)
-
-## 💡 Dicas Gerais
-
-- **Prática:** Utilize o AWS Free Tier para praticar a criação e implantação de aplicações.
-- **Ferramentas:** Familiarize-se com AWS SAM, AWS CLI e SDKs.
-- **Documentação:** Consulte a documentação oficial da AWS para serviços como Lambda, DynamoDB, IAM, etc.
-- **Simulados:** Faça simulados de exame para se acostumar com o formato e o tempo.
-- **Comunidade:** Participe de fóruns e grupos de estudo para tirar dúvidas e compartilhar conhecimentos.
-
-## Recursos Adicionais
-
-- **AWS Training:** Cursos oficiais da AWS para o exame Developer – Associate.
-- **Whizlabs e Tutorials Dojo:** Simulados e questões práticas.
-- **YouTube:** Canais como A Cloud Guru e AWS Training têm tutoriais úteis.
-
-## Contribuição
-
-Sinta-se à vontade para contribuir com este projeto enviando pull requests ou abrindo issues para melhorias e correções.
 
 ---
 
-Boa sorte na sua preparação! 🚀
+## 💡 Funcionalidades
+
+- ✅ Planos de estudo de 30 dias para múltiplas certificações AWS
+- ✅ Checklists interativas com progresso por domínio e progresso geral
+- ✅ Contagem regressiva para a data da prova
+- ✅ Anotações (post-its) com suporte a links para cada dia
+- ✅ Modo escuro / claro (DaisyUI data-theme)
+- ✅ Mensagens motivacionais por milestones de progresso
+- ✅ Confetti ao completar 100% do plano 🎉
+- ✅ Persistência completa no localStorage (checkboxes, accordion, anotações, tema, data do exame)
+- ✅ Interface responsiva (mobile e desktop)
+- ✅ Animações suaves com Framer Motion
+- ✅ Limpeza de dados por plano (com confirmação)
+
+---
+
+## 💡 Dicas de Estudo
+
+- **Prática:** Utilize o [AWS Free Tier](https://aws.amazon.com/free/) para praticar na console.
+- **Ferramentas:** Familiarize-se com AWS SAM, AWS CLI e SDKs.
+- **Documentação:** Consulte a [documentação oficial da AWS](https://docs.aws.amazon.com/).
+- **Simulados:** Faça simulados no [Tutorials Dojo](https://tutorialsdojo.com/) ou [Whizlabs](https://www.whizlabs.com/).
+- **YouTube:** Canais como A Cloud Guru e AWS Training têm tutoriais úteis.
+
+---
+
+## 🤝 Contribuição
+
+Sinta-se à vontade para contribuir enviando pull requests ou abrindo issues.
+
+---
+
+Feito com ❤️ por **Felipe Lima** — Boa sorte na sua preparação! 🚀

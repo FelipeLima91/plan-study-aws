@@ -1,27 +1,23 @@
 export function Footer() {
   return (
-    <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">
-      <aside className="grid-flow-col items-center gap-4">
-        <div>
-          <p className="font-semibold">
-            Plano de Estudos AWS &nbsp;·&nbsp; Feito com ❤️ por Felipe Lima
-          </p>
-        </div>
-      </aside>
+    <footer className="footer bg-base-300 text-base-content py-6 px-6 sm:px-8 mt-12 flex flex-col sm:flex-row items-center justify-between shadow-sm rounded-box">
+      <p className="text-sm font-medium m-0 mb-4 sm:mb-0 w-full sm:w-auto text-center sm:text-left">
+        Feito com ❤️ por Felipe Lima
+      </p>
 
-      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+      <nav className="flex items-center justify-center gap-6 w-full sm:w-auto">
         {/* GitHub */}
         <a
           href="https://github.com/FelipeLima91/plan-study-aws"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          className="hover:opacity-75 transition-opacity"
+          className="hover:opacity-75 hover:scale-110 transition-all"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             className="fill-current"
           >
@@ -35,12 +31,12 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          className="hover:opacity-75 transition-opacity"
+          className="hover:opacity-75 hover:scale-110 transition-all"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             className="fill-current"
           >
@@ -54,12 +50,12 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Portfólio"
-          className="hover:opacity-75 transition-opacity"
+          className="hover:opacity-75 hover:scale-110 transition-all"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             className="fill-current"
           >

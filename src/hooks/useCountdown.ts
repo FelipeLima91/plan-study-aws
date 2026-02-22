@@ -28,12 +28,8 @@ export function useCountdown(examDate: string | null): string {
     // Atualizar a cada minuto
     const interval = setInterval(updateCountdown, 60 * 1000);
 
-    // Atualizar diariamente (24 horas)
-    const dailyInterval = setInterval(updateCountdown, 24 * 60 * 60 * 1000);
-
     return () => {
       clearInterval(interval);
-      clearInterval(dailyInterval);
     };
   }, [examDate]);
 

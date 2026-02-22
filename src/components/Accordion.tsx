@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Domain } from '../types';
 import { Day } from './Day';
+import { useLocalStorageBoolean } from '../hooks/useLocalStorage';
+import { useStudyPlan } from '../contexts/StudyPlanContext';
 
 interface AccordionProps {
   domain: Domain;
@@ -12,42 +14,32 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-import { useLocalStorageBoolean } from '../hooks/useLocalStorage'; // Import hook
-import { useStudyPlan } from '../contexts/StudyPlanContext';
-
 export function Accordion({ domain, planId }: AccordionProps) {
   const { getDomainProgress } = useStudyPlan();
-  // Unique key for local storage based on plan and domain
   const [isOpen, setIsOpen] = useLocalStorageBoolean(`accordion_${planId}_${domain.id}`, false);
   const progress = getDomainProgress(domain.id);
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
+  const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
+    setIsOpen(e.currentTarget.open);
   };
 
   return (
-    <motion.div className="accordion" variants={itemVariants}>
-      <button className={`accordion-button ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            justifyContent: 'space-between',
-          }}
-        >
-          <span style={{ textAlign: 'left' }}>{domain.title}</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '0.8em', opacity: 0.8 }}>{progress}%</span>
-            <span className="accordion-icon">{isOpen ? '▼' : '▶'}</span>
-          </div>
+    <motion.div variants={itemVariants}>
+      <details
+        className="collapse collapse-arrow bg-base-200 border border-base-300 rounded-lg mb-2 accordion-hover"
+        open={isOpen}
+        onToggle={handleToggle}
+      >
+        <summary className="collapse-title font-semibold text-base flex items-center justify-between px-2 pl-4 py-2 md:px-4 md:py-4 pr-10 md:pr-10">
+          <span>{domain.title}</span>
+          <span className="text-sm opacity-70 ml-auto mr-2">{progress}%</span>
+        </summary>
+        <div className="collapse-content px-2 pb-2 md:px-4 md:pb-4">
+          {domain.days.map((day) => (
+            <Day key={day.id} day={day} />
+          ))}
         </div>
-      </button>
-      <div className={`accordion-content ${isOpen ? 'active' : ''}`}>
-        {domain.days.map((day) => (
-          <Day key={day.id} day={day} />
-        ))}
-      </div>
+      </details>
     </motion.div>
   );
 }

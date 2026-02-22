@@ -35,27 +35,28 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<Accordion domain={mockDomain} planId="test-plan" />);
 
-    // Busca o botão pelo texto do título (EC2) para evitar conflito com outros botões
-    const button = screen.getByRole('button', { name: /EC2/i });
+    const details = document.querySelector('details') as HTMLDetailsElement;
+    expect(details).toBeTruthy();
 
     // Começa fechado
-    expect(button).toHaveClass('accordion-button');
+    expect(details.open).toBe(false);
 
-    // Clica para abrir
-    await user.click(button);
-    expect(button).toHaveClass('active');
+    // Clica no summary para abrir
+    const summary = screen.getByText('EC2');
+    await user.click(summary);
+    expect(details.open).toBe(true);
 
-    // Clica para fechar
-    await user.click(button);
-    expect(button).not.toHaveClass('active');
+    // Clica novamente para fechar
+    await user.click(summary);
+    expect(details.open).toBe(false);
   });
 
   it('deve exibir os dias quando aberto', async () => {
     const user = userEvent.setup();
     render(<Accordion domain={mockDomain} planId="test-plan" />);
 
-    const button = screen.getByRole('button', { name: /EC2/i });
-    await user.click(button);
+    const summary = screen.getByText('EC2');
+    await user.click(summary);
 
     expect(screen.getByText('Day 1 - Basics')).toBeInTheDocument();
   });

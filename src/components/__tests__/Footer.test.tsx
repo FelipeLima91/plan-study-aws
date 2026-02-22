@@ -9,9 +9,9 @@ describe('Footer', () => {
     expect(container.querySelector('footer')).toBeInTheDocument();
   });
 
-  it('deve renderizar o nome do projeto', () => {
+  it('deve renderizar o texto do footer', () => {
     render(<Footer />);
-    expect(screen.getByText(/Plano de Estudos AWS/i)).toBeInTheDocument();
+    expect(screen.getByText(/Feito com/i)).toBeInTheDocument();
   });
 
   it('deve renderizar o crédito do autor', () => {
