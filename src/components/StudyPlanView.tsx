@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
@@ -61,32 +61,33 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
   }, [totalProgress]);
 
   // Messages configuration array requested by user
-  const milestoneMessages = [
-    {
-      condition: () => completedDomainsCount === totalDomainsCount,
-      message: 'Parabéns, você já está preparadíssimo(a) para o exame!',
-    },
-    {
-      condition: () => totalDomainsCount > 1 && completedDomainsCount === totalDomainsCount - 1,
-      message: 'Falta apenas um domínio, quase lá!',
-    },
-    {
-      condition: () => completedDomainsCount === Math.ceil(totalDomainsCount / 2),
-      message: 'Metade dos domínios concluída!',
-    },
-    {
-      condition: () =>
-        completedDomainsCount >= 1 && completedDomainsCount < Math.ceil(totalDomainsCount / 2),
-      message: 'Ótimo, você está indo bem!',
-    },
-  ];
-
-  // Find the first message whose condition is true
-  const activeMilestone = milestoneMessages.find((m) => m.condition());
+  const activeMilestoneMessage = useMemo(() => {
+    const messages = [
+      {
+        condition: () => completedDomainsCount === totalDomainsCount,
+        message: 'Parabéns, você já está preparadíssimo(a) para o exame!',
+      },
+      {
+        condition: () => totalDomainsCount > 1 && completedDomainsCount === totalDomainsCount - 1,
+        message: 'Falta apenas um domínio, quase lá!',
+      },
+      {
+        condition: () => completedDomainsCount === Math.ceil(totalDomainsCount / 2),
+        message: 'Metade dos domínios concluída!',
+      },
+      {
+        condition: () =>
+          completedDomainsCount >= 1 && completedDomainsCount < Math.ceil(totalDomainsCount / 2),
+        message: 'Ótimo, você está indo bem!',
+      },
+    ];
+    // Find the first message whose condition is true
+    return messages.find((m) => m.condition())?.message || null;
+  }, [completedDomainsCount, totalDomainsCount]);
 
   useEffect(() => {
-    if (activeMilestone) {
-      setVisibleMessage(activeMilestone.message);
+    if (activeMilestoneMessage) {
+      setVisibleMessage(activeMilestoneMessage);
       const timer = setTimeout(() => {
         setVisibleMessage(null);
       }, 5000);
@@ -94,7 +95,7 @@ function StudyPlanContent({ planConfig, onBack }: StudyPlanViewProps) {
     } else {
       setVisibleMessage(null);
     }
-  }, [activeMilestone?.message]);
+  }, [activeMilestoneMessage]);
 
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" exit="exit">

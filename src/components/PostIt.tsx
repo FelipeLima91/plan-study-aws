@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { Save } from 'lucide-react';
+import { Save, Undo } from 'lucide-react';
 
 interface PostItNote {
   id: string;
@@ -15,6 +15,8 @@ interface PostItProps {
 export function PostIt({ dayId }: PostItProps) {
   const [postIts, setPostIts] = useLocalStorage<PostItNote[]>(`${dayId}-postits`, []);
   const [inputText, setInputText] = useState('');
+  const [deletedNote, setDeletedNote] = useState<PostItNote | null>(null);
+  const hideToastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Função para detectar e converter URLs em links
   const formatTextWithLinks = (text: string): (string | JSX.Element)[] => {
@@ -66,8 +68,27 @@ export function PostIt({ dayId }: PostItProps) {
     }
   };
 
-  const handleDelete = (id: string) => {
-    setPostIts(postIts.filter((note) => note.id !== id));
+  const handleDelete = (noteToDelete: PostItNote) => {
+    setDeletedNote(noteToDelete);
+    setPostIts(postIts.filter((note) => note.id !== noteToDelete.id));
+
+    if (hideToastTimeoutRef.current) {
+      clearTimeout(hideToastTimeoutRef.current);
+    }
+
+    hideToastTimeoutRef.current = setTimeout(() => {
+      setDeletedNote(null);
+    }, 5000);
+  };
+
+  const handleUndoDelete = () => {
+    if (deletedNote) {
+      setPostIts([...postIts, deletedNote]);
+      setDeletedNote(null);
+      if (hideToastTimeoutRef.current) {
+        clearTimeout(hideToastTimeoutRef.current);
+      }
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -111,7 +132,7 @@ export function PostIt({ dayId }: PostItProps) {
           <div key={note.id} className="postit-note">
             <button
               className="postit-delete"
-              onClick={() => handleDelete(note.id)}
+              onClick={() => handleDelete(note)}
               aria-label="Deletar nota"
             >
               ×
@@ -120,6 +141,18 @@ export function PostIt({ dayId }: PostItProps) {
           </div>
         ))}
       </div>
+
+      {deletedNote && (
+        <div className="toast toast-bottom toast-center z-[100] mb-4">
+          <div className="alert shadow-lg flex gap-4 px-6 py-3 bg-base-200 text-base-content border border-base-300">
+            <span className="text-sm font-medium">Anotação removida.</span>
+            <button className="btn btn-sm btn-ghost cursor-pointer" onClick={handleUndoDelete}>
+              <Undo size={16} className="mr-1" />
+              Desfazer
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
