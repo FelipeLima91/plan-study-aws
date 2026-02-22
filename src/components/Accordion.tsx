@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Domain } from '../types';
 import { Day } from './Day';
-import { useLocalStorageBoolean } from '../hooks/useLocalStorage';
 import { useStudyPlan } from '../contexts/StudyPlanContext';
 
 interface AccordionProps {
   domain: Domain;
   planId: string;
+  isOpen: boolean;
+  onToggle: (domainId: string, open: boolean) => void;
 }
 
 const itemVariants = {
@@ -14,13 +15,12 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function Accordion({ domain, planId }: AccordionProps) {
+export function Accordion({ domain, isOpen, onToggle }: AccordionProps) {
   const { getDomainProgress } = useStudyPlan();
-  const [isOpen, setIsOpen] = useLocalStorageBoolean(`accordion_${planId}_${domain.id}`, false);
   const progress = getDomainProgress(domain.id);
 
   const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
-    setIsOpen(e.currentTarget.open);
+    onToggle(domain.id, e.currentTarget.open);
   };
 
   return (

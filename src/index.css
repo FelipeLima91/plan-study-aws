@@ -205,13 +205,13 @@ body.dark-mode .accordion-hover:hover {
 */
 body.dark-mode .day {
   background-color: #1e1e1e;
-  color: #ffffff;
+  color: #d1d5db;
 }
 
 body.dark-mode .postit-note {
   background: linear-gradient(135deg, #424242 0%, #616161 100%);
   border-left-color: #757575;
-  color: #fff;
+  color: #d1d5db;
 }
 
 body.dark-mode .postit-note:nth-child(even) {
@@ -225,7 +225,7 @@ body.dark-mode .postit-note:nth-child(3n) {
 }
 
 body.dark-mode .postit-content {
-  color: #fff;
+  color: #d1d5db;
 }
 
 body.dark-mode .postit-link {
@@ -248,12 +248,12 @@ body.dark-mode .postit-delete:hover {
 
 body.dark-mode .form-control {
   background-color: #333;
-  color: #fff;
+  color: #d1d5db;
   border-color: #555;
 }
 
 body.dark-mode .form-control:focus {
   background-color: #3a3a3a;
   border-color: #ff9900;
-  color: #fff;
+  color: #d1d5db;
 }

@@ -7,39 +7,90 @@ Este arquivo serve como guia mestre para qualquer assistente de inteligência ar
 - **Idioma Principal**: Português Brasileiro (pt-BR).
 - **Estilo de Escrita**:
   - Use uma linguagem **natural, clara e objetiva**.
-  - Evite traduções literais de termos técnicos que soem estranhos, mas mantenha os termos padrão da indústria (ex: _deploy_, _commit_, _push_, _component_) quando apropriado, explicando-os se parecer necessário para um iniciante.
-  - Seja didático.
+  - Mantenha termos técnicos padrão da indústria (ex: _deploy_, _commit_, _push_, _component_) quando apropriado.
+  - Seja didático — explique o que o código faz e por que foi feito dessa forma.
+  - Se houver alternativas (ex: mais simples vs. mais performática), explique as diferenças.
 
 ## 2. Objetivo do Projeto
 
-- **Contexto**: Este é um projeto de **estudo e aprendizagem**. O usuário está utilizando este projeto para aprender tecnologias como React, TypeScript, Vite e conceitos de AWS.
+- **Contexto**: Aplicação web de **plano de estudos para certificações AWS** (DVA-C02 e AIF-C01).
+- **Funcionalidades**: Checklists interativas, anotações (post-its), countdown para prova, cronômetro de estudo, estatísticas de anotações com exportação, uso de cache, modo escuro/claro.
 - **Prioridade**: O aprendizado é mais importante do que a "solução mais rápida".
-- **Explicações**:
-  - Ao propor código, explique **o que** ele faz e **por que** foi feito dessa forma.
-  - Se houver alternativas (ex: uma mais simples vs. uma mais performática), explique as diferenças e o motivo da escolha.
+- **Público**: Estudante aprendendo React, TypeScript e desenvolvimento web moderno.
 
-## 3. Diretrizes Técnicas
+## 3. Stack Técnica
 
-- **Stack**: React, TypeScript, Vite.
-- **Boas Práticas de Mercado**:
-  - Adote padrões de projeto e arquitetura reconhecidos pela indústria (Best Practices).
-  - O código deve refletir o que é utilizado em ambientes profissionais reais, preparando o estudante para o mercado de trabalho.
-- **Qualidade de Código**:
-  - Escreva código limpo (_clean code_) e legível.
-  - Prefira clareza à brevidade excessiva.
-  - **Tipagem**: Use TypeScript de forma explícita para ajudar no entendimento dos tipos de dados. Evite `any` a menos que estritamente necessário (e explique o motivo).
+| Categoria    | Tecnologia                    |
+| ------------ | ----------------------------- |
+| Framework    | React 18 + TypeScript         |
+| Build tool   | Vite 5                        |
+| Estilização  | Tailwind CSS v4 + DaisyUI 5   |
+| Animações    | Framer Motion                 |
+| Ícones       | Lucide React                  |
+| PDF          | jsPDF                         |
+| Testes       | Jest + React Testing Library  |
+| Lint/Formato | ESLint + Prettier             |
+| Git Hooks    | Husky + lint-staged           |
+| Deploy       | GitHub Actions → GitHub Pages |
 
-## 4. O que fazer antes de responder
+## 4. Convenções de Código
 
-- **Conferir o Contexto**: Leia os arquivos relevantes para entender o estado atual do projeto.
-- **Verificar Regras**: Releia este arquivo para alinhar o tom e o idioma.
+### Componentes
 
-## Exemplo de Interação Ideal
+- Componentes funcionais com `export function NomeComponente()`
+- Props tipadas com `interface` dedicada
+- Modais usando `<dialog>` nativo do DaisyUI (controlados via `showModal()` / `close()`)
+- Ícones do `lucide-react` (não usar SVGs inline para novos componentes)
 
-**Usuário**: "Como eu crio um componente de botão?"
-**IA**: "Para criar um componente de botão reutilizável em React com TypeScript, podemos fazer o seguinte:
+### Estado e Dados
 
-1. Criar um arquivo `Button.tsx`.
-2. Definir a interface das `props` para saber quais dados o botão aceita (como texto, função de clique, etc).
-3. Implementar o componente funcional.
-   Aqui está um exemplo comentado..."
+- Estado global via `React Context` (`StudyPlanContext`)
+- Persistência via `localStorage` com hooks customizados (`useLocalStorage`, `useLocalStorageString`, `useLocalStorageBoolean`)
+- Memoização com `useMemo` para cálculos derivados e `useCallback` para funções passadas como props
+
+### Estilização
+
+- **Usar classes DaisyUI** para componentes (btn, modal, stat, countdown, card, accordion, etc.)
+- **Usar tokens semânticos** do DaisyUI para cores (`bg-base-100`, `text-base-content`, `text-primary`, etc.) — **nunca usar cores hardcoded** como `bg-white` ou `text-black`
+- Estilos customizados em `index.css` apenas quando DaisyUI não cobre (ex: post-its)
+- Dark mode via `data-theme` + classe `body.dark-mode` para CSS legado
+- Fontes no dark mode: usar cinza suave (`#d1d5db`), não branco puro
+
+### Testes
+
+- Testes em `__tests__/` dentro de `components/` e `hooks/`
+- Padrão: `NomeComponente.test.tsx` ou `nomeHook.test.ts`
+- Rodar antes de commitar: `npm test && npm run lint && npm run build`
+
+## 5. Estrutura de Pastas
+
+```
+src/
+├── components/        # Componentes React
+│   └── __tests__/     # Testes dos componentes
+├── contexts/          # React Context (estado global)
+├── hooks/             # Custom hooks
+│   └── __tests__/     # Testes dos hooks
+├── data/              # Dados dos planos de estudo
+├── types/             # Tipos TypeScript
+├── App.tsx            # Componente principal
+├── main.tsx           # Entry point
+└── index.css          # Estilos globais
+```
+
+## 6. O que fazer antes de responder
+
+1. **Ler este arquivo** para alinhar tom, idioma e convenções
+2. **Conferir o contexto**: Ler os arquivos relevantes para entender o estado atual
+3. **Seguir as convenções**: Usar DaisyUI, tokens semânticos, tipagem explícita
+4. **Verificar impacto**: Checar se a mudança afeta testes ou outros componentes
+5. **Explicar o porquê**: Não apenas o que — o aluno precisa entender a razão
+
+## 7. O que evitar
+
+- ❌ `any` no TypeScript (a menos que estritamente necessário, com explicação)
+- ❌ Cores hardcoded (`bg-white`, `text-black`) — usar tokens DaisyUI
+- ❌ Estado duplicado derivável de outro estado
+- ❌ Inline styles quando Tailwind/DaisyUI cobre
+- ❌ Comentários óbvios que repetem o código
+- ❌ `console.log` em código de produção

@@ -7,6 +7,9 @@ interface HeroSectionProps {
   onSelectPlan: (planId: string) => void;
 }
 
+const BG_BLOB_CLIP_PATH =
+  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)';
+
 export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
   return (
     <motion.div
@@ -24,10 +27,7 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
         >
           <div
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-800 to-blue-400 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
+            style={{ clipPath: BG_BLOB_CLIP_PATH }}
           />
         </div>
 
@@ -38,10 +38,7 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
         >
           <div
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-orange-500 to-amber-300 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
+            style={{ clipPath: BG_BLOB_CLIP_PATH }}
           />
         </div>
         {/* Main content */}
@@ -103,10 +100,11 @@ export function HeroSection({ plans, onSelectPlan }: HeroSectionProps) {
             <p className="mb-2 text-sm leading-relaxed text-base-content">
               Este site foi desenvolvido como um projeto pessoal, com o objetivo de servir como uma
               ferramenta de apoio ao aprendizado. O plano de 30 dias de estudos é apenas um exemplo
-              de organização como outros sites e cursos. Recomendamos o estudo diário de 1 hora.
+              de organização como outros sites e cursos. Recomendamos o estudo diário de 1 hora e
+              utilize outros meios de estudos para complementar.
             </p>
             <p className="mb-2 text-sm leading-relaxed text-base-content">
-              Se você tiver mais dias disponíveis, melhor ainda — isso permite estudar com mais
+              Se você tiver mais dias disponíveis, melhor ainda, isso permite estudar com mais
               calma. Caso tenha menos dias, será necessário aumentar a carga diária de estudos para
               compensar.
             </p>
